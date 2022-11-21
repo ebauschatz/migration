@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'race_legs',
     'teams',
     'team_roles',
+    'runners',
 ]
 
 MIDDLEWARE = [

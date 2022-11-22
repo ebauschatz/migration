@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import TeamSchedulePage from "./pages/TeamSchedulePage/TeamSchedulePage";
+import JoinTeamPage from "./pages/JoinTeamPage/JoinTeamPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -32,6 +33,14 @@ function App() {
           element={
             <PrivateRoute>
               <TeamSchedulePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/join"
+          element={
+            <PrivateRoute>
+              <JoinTeamPage />
             </PrivateRoute>
           }
         />

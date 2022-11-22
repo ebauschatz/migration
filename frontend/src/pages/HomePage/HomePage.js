@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import EventList from "../../components/EventList/EventList";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
 
 const HomePage = () => {

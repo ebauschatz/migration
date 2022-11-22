@@ -10,7 +10,6 @@ import TeamSchedulePage from "./pages/TeamSchedulePage/TeamSchedulePage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
@@ -29,7 +28,7 @@ function App() {
           }
         />
         <Route
-          path="/teamschedule"
+          path="/teamschedule/:teamId"
           element={
             <PrivateRoute>
               <TeamSchedulePage />
@@ -39,7 +38,6 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

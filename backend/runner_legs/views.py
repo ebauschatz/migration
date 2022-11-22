@@ -18,6 +18,13 @@ def get_all_legs_for_runner(request, runner_id):
     serializer = RunnerLegSerializer(runner_legs, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_legs_for_team(request, team_id):
+    runner_legs = RunnerLeg.objects.filter(runner__team__pk=team_id)
+    serializer = RunnerLegSerializer(runner_legs, many=True)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_runner_leg(request):

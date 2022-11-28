@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from "axios";
 
 const JoinTeamsList = (props) => {
-    const [teams, setTeams] = useState([]);
-
     useEffect(() => {
         getRaceTeams(props.raceId);
-    }, [props.raceId])
+    }, [props.raceId, getRaceTeams])
 
     async function getRaceTeams() {
         try {
@@ -15,18 +13,25 @@ const JoinTeamsList = (props) => {
                 Authorization: "Bearer " + props.token,
               },
             });
-            setTeams(response.data);
+            props.setTeams(response.data);
           }
           catch (error) {
             console.log(error.response.data);
           }
     }
 
+    function handleTeamSelected(team) {
+      props.setSelectedTeam(team);
+      props.setShowJoinModal(true);
+    }
+
     return (
         <div>
             Available Teams:
-            {teams.map((team) => {
-                return <div key={team.id}>{team.team_name}</div>
+            {props.teams.map((team) => {
+                return <div key={team.id} onClick={() => handleTeamSelected(team)}>
+                    {team.team_name}
+                  </div>
             })}
         </div>
     );

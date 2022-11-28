@@ -5,7 +5,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-const JoinModal = (props) => {
+const JoinTeamModal = (props) => {
     const navigate = useNavigate();
     const [allTeamRoles, setAllTeamRoles] = useState([]);
     const [pace, setPace] = useState("");
@@ -104,4 +104,4 @@ const JoinModal = (props) => {
     );
 }
  
-export default JoinModal;
+export default JoinTeamModal;

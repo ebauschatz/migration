@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.first_name}!</h1>
-      <button onClick={() => navigate("/join")}>Join A Team</button>
+      <button onClick={() => navigate("/join")}>Join An Event</button>
       <EventList events={events} />
     </div>
   );

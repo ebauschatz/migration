@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import JoinRacesList from '../../components/JoinEventComponents/JoinRacesList/JoinRacesList';
 import JoinTeamsList from '../../components/JoinEventComponents/JoinTeamsList/JoinTeamsList';
 import JoinTeamModal from '../../components/JoinEventComponents/JoinTeamModal/JoinTeamModal';
+import CreateTeamModal from '../../components/JoinEventComponents/CreateTeamModal/CreateTeamModal';
 
 const JoinEventPage = (props) => {
     const [user, token] = useAuth();
@@ -13,6 +14,7 @@ const JoinEventPage = (props) => {
     const [selectedTeam, setSelectedTeam] = useState({});
     const [showJoinModal, setShowJoinModal] = useState(false);
     const [showCreateTeamModal, setShowCreateTeamModal] = useState(false);
+    const [allTeamRoles, setAllTeamRoles] = useState([]);
 
     useEffect(() => {
         const getAllRaces = async () => {
@@ -30,6 +32,23 @@ const JoinEventPage = (props) => {
         }
         getAllRaces();
     }, [token])
+    
+    useEffect(() => {
+        const fetchRunnerRoles = async () => {
+            try {
+                let response = await axios.get("http://127.0.0.1:8000/api/team_roles/all/", {
+                    headers: {
+                    Authorization: "Bearer " + token,
+                    },
+                });
+                setAllTeamRoles(response.data);
+            }
+            catch (error) {
+                console.log(error.response.data);
+            }
+        }
+        fetchRunnerRoles();
+    }, [token]);
     
     useEffect(() => {
         const getRaceTeams = async () => {
@@ -54,8 +73,8 @@ const JoinEventPage = (props) => {
         <div>
             <JoinRacesList races={races} setRaceId={setRaceId} />
             {raceId && <JoinTeamsList token={token} raceId={raceId} teams={teams} setTeams={setTeams} setSelectedTeam={setSelectedTeam} setShowJoinModal={setShowJoinModal} showCreateTeamModal={showCreateTeamModal} setShowCreateTeamModal={setShowCreateTeamModal} />}
-            <JoinTeamModal selectedTeam={selectedTeam} showJoinModal={showJoinModal} setShowJoinModal={setShowJoinModal} userId={user.id} token={token} />
-            {/* <CreateTeamModal userId={user.id} token={token} showCreateTeamModal={showCreateTeamModal} setShowCreateTeamModal={setShowCreateTeamModal} /> */}
+            <JoinTeamModal allTeamRoles={allTeamRoles} selectedTeam={selectedTeam} showJoinModal={showJoinModal} setShowJoinModal={setShowJoinModal} userId={user.id} token={token} />
+            <CreateTeamModal raceId={raceId} allTeamRoles={allTeamRoles} userId={user.id} token={token} showCreateTeamModal={showCreateTeamModal} setShowCreateTeamModal={setShowCreateTeamModal} />
         </div>
     );
 }

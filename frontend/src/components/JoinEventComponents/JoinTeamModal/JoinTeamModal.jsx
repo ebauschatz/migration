@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -7,29 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const JoinTeamModal = (props) => {
     const navigate = useNavigate();
-    const [allTeamRoles, setAllTeamRoles] = useState([]);
     const [pace, setPace] = useState("");
     const [teamRole, setTeamRole] = useState({"id":0, "role_name": "Select"});
 
-    useEffect(() => {
-        const fetchRunnerRoles = async () => {
-            try {
-                let response = await axios.get("http://127.0.0.1:8000/api/team_roles/all/", {
-                    headers: {
-                    Authorization: "Bearer " + props.token,
-                    },
-                });
-                setAllTeamRoles(response.data);
-            }
-            catch (error) {
-                console.log(error.response.data);
-            }
-        }
-        fetchRunnerRoles();
-    }, [props.token]);
-
     function resetForm() {
-        setPace("");
+        setPace("00:00");
         setTeamRole({"id":0, "role_name": "Select"});
     }
      
@@ -48,13 +30,15 @@ const JoinTeamModal = (props) => {
                     },
                   }
                 );
+            if (response.status === 201) {
+                resetForm();
+                props.setShowJoinModal(false);
+                navigate("/")
+            }
         }
         catch (error) {
             console.log(error.response.data);
         }
-        resetForm();
-        props.setShowJoinModal(false);
-        navigate("/")
     }
 
     function cancelRegistration() {
@@ -87,7 +71,7 @@ const JoinTeamModal = (props) => {
                             Select your role
                         </label>
                         <DropdownButton id="role-dropdown" title={teamRole.role_name}>
-                            {allTeamRoles.map((teamRole) => {
+                            {props.allTeamRoles.map((teamRole) => {
                                 return <Dropdown.Item key={teamRole.id} onClick={() => setTeamRole(teamRole)}>{teamRole.role_name}</Dropdown.Item>
                             })}
                         </DropdownButton>

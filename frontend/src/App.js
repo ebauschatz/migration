@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import TeamSchedulePage from "./pages/TeamSchedulePage/TeamSchedulePage";
 import JoinEventPage from "./pages/JoinEventPage/JoinEventPage";
+import RacesPage from "./pages/RacesPage/RacesPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -41,6 +42,14 @@ function App() {
           element={
             <PrivateRoute>
               <JoinEventPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/races"
+          element={
+            <PrivateRoute>
+              <RacesPage />
             </PrivateRoute>
           }
         />

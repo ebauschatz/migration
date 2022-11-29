@@ -6,6 +6,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from .models import Runner
 from .serializers import RunnerSerializer
+from teams.models import Team
+from teams.serializers import TeamSerializer
 
 
 @api_view(['GET'])
@@ -30,6 +32,21 @@ def create_runner(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_team_and_runner(request):
+    teamSerializer = TeamSerializer(data=request.data)
+    if teamSerializer.is_valid():
+        teamSerializer.save()
+        request.data['team_id'] = teamSerializer.data['id']
+        runnerSerializer = RunnerSerializer(data=request.data)
+        if runnerSerializer.is_valid():
+            runnerSerializer.save()
+            return Response(runnerSerializer.data, status=status.HTTP_201_CREATED)
+    return Response(teamSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 @api_view(['GET', 'DELETE', 'PUT'])
 @permission_classes([IsAuthenticated])

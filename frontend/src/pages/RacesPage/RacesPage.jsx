@@ -52,7 +52,6 @@ const RacesPage = (props) => {
             "race_finish_closes": formData.raceFinishCloses,
             "race_start_place_id": startPlaceId
         };
-        console.log(newRace);
         try {
             let response = await axios.post("http://127.0.0.1:8000/api/races/new/",
                 newRace,
@@ -63,6 +62,7 @@ const RacesPage = (props) => {
             );
             if (response.status === 201) {
                 getAllRaces();
+                handleReset();
             }
         }
         catch (error) {

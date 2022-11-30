@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useCustomForm from '../../hooks/useCustomForm';
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import RaceLocationMap from '../../components/RaceComponents/RaceLocationMap/RaceLocationMap';
 import CreateRaceForm from '../../components/RaceComponents/CreateRaceForm/CreateRaceForm';
+import RacesList from '../../components/RaceComponents/RacesList/RacesList';
+import keys from '../../API_Keys.json';
 
 const RacesPage = (props) => {
     const [user, token] = useAuth();
+    const [races, setRaces] = useState([]);
     const initialValues = {
         raceName: "",
         raceStartDate: "",
@@ -20,6 +23,10 @@ const RacesPage = (props) => {
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(initialValues, handleFormSubmit);
     const [startPlaceId, setStartPlaceId] = useState("");
 
+    useEffect(() => {
+        getAllRaces();
+    }, []);
+
     function handleReset() {
         reset();
         setStartPlaceId("");
@@ -29,7 +36,7 @@ const RacesPage = (props) => {
         let unformatted_address = formData.raceAddress + "%20" + formData.raceCity + "%20" + formData.raceState  + "%20" + formData.raceZip;
         let formatted_address = unformatted_address.replace(" ", "%20");
         try {
-            let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted_address}&key=AIzaSyDQhT35nj-2_MIGFY05nIXucu4k8VTYuIs`);
+            let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted_address}&key=${keys.googleMapsAPIKey}`);
             if (response.status === 200) {
                 setStartPlaceId(response.data.results[0]["place_id"]);
             }
@@ -56,6 +63,25 @@ const RacesPage = (props) => {
                     },
                 }
             );
+            if (response.status === 201) {
+                getAllRaces();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
+    async function getAllRaces() {
+        try {
+            let response = await axios.get("http://127.0.0.1:8000/api/races/all/", {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            });
+            if (response.status === 200) {
+                setRaces(response.data);
+            }
         }
         catch (error) {
             console.log(error.response.data);
@@ -66,6 +92,7 @@ const RacesPage = (props) => {
         <div>
             <CreateRaceForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleValidateAddress={handleValidateAddress} handleReset={handleReset} handleFormSubmit={handleFormSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
+            <RacesList races={races} />
         </div>
     );
 }

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import useCustomForm from '../../hooks/useCustomForm';
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 import RaceLocationMap from '../../components/RaceComponents/RaceLocationMap/RaceLocationMap';
 import CreateRaceForm from '../../components/RaceComponents/CreateRaceForm/CreateRaceForm';
 import RacesList from '../../components/RaceComponents/RacesList/RacesList';
 import keys from '../../API_Keys.json';
 
 const RacesPage = (props) => {
-    const [user, token] = useAuth();
     const [races, setRaces] = useState([]);
     const initialValues = {
         raceName: "",
@@ -59,7 +57,7 @@ const RacesPage = (props) => {
             let response = await axios.post("http://127.0.0.1:8000/api/races/new/",
                 newRace,
                 {headers: {
-                    Authorization: "Bearer " + token,
+                    Authorization: "Bearer " + props.token,
                     },
                 }
             );
@@ -76,7 +74,7 @@ const RacesPage = (props) => {
         try {
             let response = await axios.get("http://127.0.0.1:8000/api/races/all/", {
                 headers: {
-                    Authorization: "Bearer " + token,
+                    Authorization: "Bearer " + props.token,
                 },
             });
             if (response.status === 200) {

@@ -1,5 +1,6 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
+import useAuth from './hooks/useAuth';
 import "./App.css";
 
 // Pages Imports
@@ -9,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import TeamSchedulePage from "./pages/TeamSchedulePage/TeamSchedulePage";
 import JoinEventPage from "./pages/JoinEventPage/JoinEventPage";
 import RacesPage from "./pages/RacesPage/RacesPage";
+import RaceDetailPage from "./pages/RaceDetailPage/RaceDetailPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -17,6 +19,8 @@ import Navbar from "./components/NavBar/NavBar";
 import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
+  const [user, token] = useAuth();
+
   return (
     <div>
       <Navbar />
@@ -25,7 +29,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <HomePage user={user} token={token} />
             </PrivateRoute>
           }
         />
@@ -33,7 +37,7 @@ function App() {
           path="/teamschedule/:teamId"
           element={
             <PrivateRoute>
-              <TeamSchedulePage />
+              <TeamSchedulePage token={token} />
             </PrivateRoute>
           }
         />
@@ -49,7 +53,15 @@ function App() {
           path="/races"
           element={
             <PrivateRoute>
-              <RacesPage />
+              <RacesPage token={token} />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/races/:raceId"
+          element={
+            <PrivateRoute>
+              <RaceDetailPage token={token} />
             </PrivateRoute>
           }
         />

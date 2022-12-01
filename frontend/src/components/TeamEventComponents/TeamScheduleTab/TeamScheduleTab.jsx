@@ -1,16 +1,14 @@
-import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import TeamScheduleTable from "../../components/TeamScheduleTable/TeamScheduleTable";
+import TeamScheduleTable from "../TeamScheduleTable/TeamScheduleTable";
 
-const TeamSchedulePage = (props) => {
-    const {teamId} = useParams();
+const TeamScheduleTab = (props) => {
     const [runnerLegs, setRunnerLegs] = useState([]);
 
     useEffect(() => {
         const fetchRunnerLegs = async () => {
             try {
-                let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/team/${teamId}/`, {
+                let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/team/${props.teamId}/`, {
                     headers: {
                     Authorization: "Bearer " + props.token,
                     },
@@ -22,7 +20,7 @@ const TeamSchedulePage = (props) => {
             }
         }
         fetchRunnerLegs();
-        }, [props.token, teamId]);
+        }, [props.token, props.teamId]);
 
     return (
         <div>
@@ -32,4 +30,4 @@ const TeamSchedulePage = (props) => {
     );
 }
  
-export default TeamSchedulePage;
+export default TeamScheduleTab;

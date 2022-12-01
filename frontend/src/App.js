@@ -7,7 +7,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import TeamSchedulePage from "./pages/TeamSchedulePage/TeamSchedulePage";
+import TeamEventPage from "./pages/TeamEventPage/TeamEventPage";
 import JoinEventPage from "./pages/JoinEventPage/JoinEventPage";
 import RacesPage from "./pages/RacesPage/RacesPage";
 import RaceDetailPage from "./pages/RaceDetailPage/RaceDetailPage";
@@ -34,10 +34,10 @@ function App() {
           }
         />
         <Route
-          path="/teamschedule/:teamId"
+          path="/teamevent/:teamId"
           element={
             <PrivateRoute>
-              <TeamSchedulePage token={token} />
+              <TeamEventPage token={token} />
             </PrivateRoute>
           }
         />

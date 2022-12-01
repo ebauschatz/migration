@@ -8,6 +8,7 @@ const RacesList = (props) => {
                     <th>Race Name</th>
                     <th>Race Start Date</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

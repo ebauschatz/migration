@@ -106,6 +106,7 @@ const RaceDetailPage = (props) => {
     return (
         <div>
             <RaceDetail race={race} />
+            <RaceLocationMap placeId={race.race_start_place_id} />
             <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
             <RaceLegsList legs={legs} />

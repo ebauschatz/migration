@@ -38,6 +38,16 @@ def get_unassigned_team_legs(request, team_id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_runner_leg(request):
+    request.data["runner_leg_end"] = request.data["runner_leg_start"]
+    serializer = RunnerLegSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_runner_leg_calculate_end_time(request):
     runner = get_object_or_404(Runner, id=request.data["runner_id"])
     start_datetime = datetime.strptime(request.data["runner_leg_start"], '%Y-%m-%d %H:%M:%S')
     race_leg = get_object_or_404(RaceLeg, id=request.data["race_leg_id"])

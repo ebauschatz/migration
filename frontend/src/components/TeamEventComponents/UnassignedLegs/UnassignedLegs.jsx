@@ -18,7 +18,7 @@ const UnassignedLegs = (props) => {
                 </thead>
                 <tbody>
                     {props.unassignedLegs.map((leg) => {
-                        return <UnassignedLegRow key={leg.id} leg={leg} />
+                        return <UnassignedLegRow key={leg.id} leg={leg} runners={props.runners} assignRunnerLeg={props.assignRunnerLeg} />
                     })}
                 </tbody>
             </table>

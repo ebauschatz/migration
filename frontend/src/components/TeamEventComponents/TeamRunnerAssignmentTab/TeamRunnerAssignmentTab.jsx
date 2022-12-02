@@ -1,11 +1,31 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AssignedLegs from "../AssignedLegs/AssignedLegs";
 import UnassignedLegs from "../UnassignedLegs/UnassignedLegs";
 
 const TeamRunnerAssignmentTab = (props) => {
     const [assignedLegs, setAssignedLegs] = useState([]);
     const [unassignedLegs, setUnassignedLegs] = useState([]);
+    const [runners, setRunners] = useState([]);
+
+    useEffect(() => {
+        const getRunners = async () => {
+            try {
+                let response = await axios.get(`http://127.0.0.1:8000/api/runners/team/${props.teamId}/`,{
+                    headers: {
+                        Authorization: "Bearer " + props.token,
+                    },
+                });
+                if (response.status === 200) {
+                    setRunners(response.data);
+                }
+            }
+            catch (error) {
+                console.log(error.response.data);
+            }
+        }
+        getRunners();
+    }, [props.teamId, props.token])
 
     async function getAssignedLegs() {
         try {
@@ -15,7 +35,6 @@ const TeamRunnerAssignmentTab = (props) => {
                 },
             });
             if (response.status === 200) {
-                console.log(response.data);
                 setAssignedLegs(response.data);
             }
         }
@@ -32,8 +51,25 @@ const TeamRunnerAssignmentTab = (props) => {
                 },
             });
             if (response.status === 200) {
-                console.log(response.data);
                 setUnassignedLegs(response.data);
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
+    async function assignRunnerLeg(runnerLeg) {
+        try {
+            let response = await axios.post("http://127.0.0.1:8000/api/runner_legs/new/",
+                runnerLeg,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                },
+            });
+            if (response.status === 201) {
+                getUnassignedLegs();
+                getAssignedLegs();
             }
         }
         catch (error) {
@@ -44,7 +80,7 @@ const TeamRunnerAssignmentTab = (props) => {
     return (
         <div>
             <AssignedLegs assignedLegs={assignedLegs} getAssignedLegs={getAssignedLegs} />
-            <UnassignedLegs unassignedLegs={unassignedLegs} getUnassignedLegs={getUnassignedLegs} />
+            <UnassignedLegs unassignedLegs={unassignedLegs} getUnassignedLegs={getUnassignedLegs} runners={runners} assignRunnerLeg={assignRunnerLeg} />
         </div>
     );
 }

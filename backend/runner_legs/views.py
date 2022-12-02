@@ -2,8 +2,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import get_object_or_404
 from .models import RunnerLeg
 from .serializers import RunnerLegSerializer
 from runners.models import Runner
@@ -56,4 +57,14 @@ def create_runner_leg_calculate_end_time(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_runner_leg(request, runner_leg_id):
+    runner_leg = get_object_or_404(RunnerLeg, id=runner_leg_id)
+    serializer = RunnerLegSerializer(runner_leg, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

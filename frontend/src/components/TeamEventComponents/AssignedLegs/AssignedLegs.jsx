@@ -20,7 +20,7 @@ const AssignedLegs = (props) => {
                 </thead>
                 <tbody>
                     {props.assignedLegs.map((runnerLeg) => {
-                        return <AssignedLegRow key={runnerLeg.id} runnerLeg={runnerLeg} />
+                        return <AssignedLegRow key={runnerLeg.id} runnerLeg={runnerLeg} runners={props.runners} reassignRunnerLeg={props.reassignRunnerLeg} />
                     })}
                 </tbody>
             </table>

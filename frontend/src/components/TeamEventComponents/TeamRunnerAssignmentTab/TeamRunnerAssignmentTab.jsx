@@ -77,9 +77,26 @@ const TeamRunnerAssignmentTab = (props) => {
         }
     }
 
+    async function reassignRunnerLeg(id, runnerLeg) {
+        try {
+            let response = await axios.put(`http://127.0.0.1:8000/api/runner_legs/${id}/`,
+                runnerLeg,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                },
+            });
+            if (response.status === 200) {
+                getAssignedLegs();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     return (
         <div>
-            <AssignedLegs assignedLegs={assignedLegs} getAssignedLegs={getAssignedLegs} />
+            <AssignedLegs assignedLegs={assignedLegs} getAssignedLegs={getAssignedLegs} runners={runners} reassignRunnerLeg={reassignRunnerLeg} />
             <UnassignedLegs unassignedLegs={unassignedLegs} getUnassignedLegs={getUnassignedLegs} runners={runners} assignRunnerLeg={assignRunnerLeg} />
         </div>
     );

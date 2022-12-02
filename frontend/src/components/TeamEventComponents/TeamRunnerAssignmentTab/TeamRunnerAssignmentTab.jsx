@@ -35,7 +35,9 @@ const TeamRunnerAssignmentTab = (props) => {
                 },
             });
             if (response.status === 200) {
-                setAssignedLegs(response.data);
+                let unsortedLegs = response.data;
+                let sortedLegs = [...unsortedLegs].sort((a, b) => a.race_leg.leg_number - b.race_leg.leg_number);
+                setAssignedLegs(sortedLegs);
             }
         }
         catch (error) {
@@ -51,7 +53,9 @@ const TeamRunnerAssignmentTab = (props) => {
                 },
             });
             if (response.status === 200) {
-                setUnassignedLegs(response.data);
+                let unsortedLegs = response.data;
+                let sortedLegs = [...unsortedLegs].sort((a, b) => a.leg_number - b.leg_number);
+                setUnassignedLegs(sortedLegs);
             }
         }
         catch (error) {

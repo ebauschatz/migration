@@ -3,7 +3,11 @@ import RaceLocationMap from '../RaceLocationMap/RaceLocationMap';
 
 const LegLocationModal = (props) => {
     if (props.modalLeg === "") {
-        return <div>No Leg Found</div>
+        return (
+            <Modal show={props.showLegLocationModal}>
+                No Leg Found
+            </Modal>
+        )
     }
     else {
         return (

@@ -13,7 +13,11 @@ const TeamScheduleTab = (props) => {
                     Authorization: "Bearer " + props.token,
                     },
                 });
-                setRunnerLegs(response.data);
+                if (response.status === 200) {
+                    let unsortedLegs = response.data;
+                    let sortedLegs = [...unsortedLegs].sort((a, b) => a.race_leg.leg_number - b.race_leg.leg_number)
+                    setRunnerLegs(sortedLegs);
+                }
             }
             catch (error) {
                 console.log(error.response.data);

@@ -52,7 +52,9 @@ const RaceDetailPage = (props) => {
                 }
             });
             if (response.status === 200) {
-                setLegs(response.data);
+                let unsortedLegs = response.data;
+                let sortedLegs = [...unsortedLegs].sort((a, b) => a.leg_number - b.leg_number);
+                setLegs(sortedLegs);
             }
         }
         catch (error) {

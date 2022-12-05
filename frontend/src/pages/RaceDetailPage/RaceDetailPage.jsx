@@ -16,10 +16,10 @@ const RaceDetailPage = (props) => {
     const initialValues = {
         "legNumber": "",
         "legDistance": "",
-        "legAddress": "",
-        "legCity": "",
-        "legState": "",
-        "legZip": ""
+        "address": "",
+        "city": "",
+        "state": "",
+        "zip": ""
     }
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(initialValues, handleFormSubmit);
     
@@ -92,7 +92,7 @@ const RaceDetailPage = (props) => {
     }
 
     async function handleValidateAddress() {
-        let unformatted_address = formData.legAddress + "%20" + formData.legCity + "%20" + formData.legState  + "%20" + formData.legZip;
+        let unformatted_address = formData.address + "%20" + formData.city + "%20" + formData.state  + "%20" + formData.zip;
         let formatted_address = unformatted_address.replace(" ", "%20");
         try {
             let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted_address}&key=${keys.googleMapsAPIKey}`);
@@ -108,7 +108,6 @@ const RaceDetailPage = (props) => {
     return (
         <div>
             <RaceDetail race={race} />
-            <RaceLocationMap placeId={race.race_start_place_id} />
             <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
             <RaceLegsList legs={legs} />

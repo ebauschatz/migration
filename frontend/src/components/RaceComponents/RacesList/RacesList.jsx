@@ -13,7 +13,7 @@ const RacesList = (props) => {
             </thead>
             <tbody>
                 {props.races.map((race) => {
-                    return <RaceRow key={race.id} race={race} />
+                    return <RaceRow key={race.id} race={race} deleteRace={props.deleteRace} />
                 })}
             </tbody>
         </table>

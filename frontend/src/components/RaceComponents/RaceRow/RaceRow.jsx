@@ -12,7 +12,7 @@ const RaceRow = (props) => {
             <td>{props.race.race_name}</td>
             <td>{props.race.race_start_date}</td>
             <td onClick={handleRaceRowClicked}>View & Edit</td>
-            <td><i className="fa fa-trash-o"></i></td>
+            <td><i className="fa fa-trash-o" onClick={() => props.deleteRace(props.race.id)}></i></td>
         </tr>
     );
 }

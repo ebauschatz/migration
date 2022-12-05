@@ -25,36 +25,36 @@ const CreateRaceLegForm = (props) => {
                 <input
                     type="text"
                     required={true}
-                    name="legAddress"
+                    name="address"
                     onChange={props.handleInputChange}
-                    value={props.formData.legAddress}
+                    value={props.formData.address}
                 />
                 <br />
                 <label>Leg End City:</label>
                 <input
                     type="text"
                     required={true}
-                    name="legCity"
+                    name="city"
                     onChange={props.handleInputChange}
-                    value={props.formData.legCity}
+                    value={props.formData.city}
                 />
                 <br />
                 <label>Leg End State:</label>
                 <input
                     type="text"
                     required={true}
-                    name="legState"
+                    name="state"
                     onChange={props.handleInputChange}
-                    value={props.formData.legState}
+                    value={props.formData.state}
                 />
                 <br />
                 <label>Leg End Zip Code:</label>
                 <input
                     type="text"
                     required={true}
-                    name="legZip"
+                    name="zip"
                     onChange={props.handleInputChange}
-                    value={props.formData.legZip}
+                    value={props.formData.zip}
                 />
                 <br />
                 <button type="button" onClick={props.handleValidateAddress}>Validate Address</button>

@@ -86,11 +86,27 @@ const RacesPage = (props) => {
         }
     }
 
+    async function deleteRace(raceId) {
+        try {
+            let response = await axios.delete(`http://127.0.0.1:8000/api/races/${raceId}/`, {
+                headers: {
+                    Authorization: "Bearer " + props.token,
+                },
+            });
+            if (response.status === 204) {
+                getAllRaces();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     return (
         <div>
             <CreateRaceForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleValidateAddress={handleValidateAddress} handleReset={handleReset} handleFormSubmit={handleFormSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
-            <RacesList races={races} />
+            <RacesList races={races} deleteRace={deleteRace} />
         </div>
     );
 }

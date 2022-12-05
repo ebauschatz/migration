@@ -62,6 +62,22 @@ const RaceDetailPage = (props) => {
         }
     }
 
+    async function deleteRaceLeg(legId) {
+        try {
+            let response = await axios.delete(`http://127.0.0.1:8000/api/race_legs/${legId}/`, {
+                headers: {
+                    Authorization: "Bearer " + props.token,
+                }
+            });
+            if (response.status === 204) {
+                getRaceLegs();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     async function handleFormSubmit() {
         let newLeg = {
             "leg_number": formData.legNumber,
@@ -110,7 +126,7 @@ const RaceDetailPage = (props) => {
             <RaceDetail race={race} />
             <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
-            <RaceLegsList legs={legs} />
+            <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} />
         </div>
     );
 }

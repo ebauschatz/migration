@@ -22,7 +22,7 @@ const RaceLegsList = (props) => {
                 </thead>
                 <tbody>
                     {props.legs.map((leg) => {
-                        return <RaceLegRow key={leg.id} leg={leg} handleShowLegLocation={handleShowLegLocation} />
+                        return <RaceLegRow key={leg.id} leg={leg} handleShowLegLocation={handleShowLegLocation} deleteRaceLeg={props.deleteRaceLeg} />
                     })}
                 </tbody>
             </table>

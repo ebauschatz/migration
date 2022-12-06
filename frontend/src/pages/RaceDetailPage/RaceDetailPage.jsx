@@ -95,6 +95,7 @@ const RaceDetailPage = (props) => {
             );
             if (response.status === 201) {
                 getRaceLegs();
+                handleFormReset();
             }
         }
         catch (error) {

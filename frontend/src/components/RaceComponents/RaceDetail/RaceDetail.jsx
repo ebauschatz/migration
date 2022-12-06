@@ -14,7 +14,7 @@ const RaceDetail = (props) => {
             Finish Closes: {props.race.race_finish_closes}<br />
             <RaceLocationMap placeId={props.race.race_start_place_id} />
             <button type="button" onClick={() => setShowRaceEditModal(true)}>Edit</button>
-            <RaceEditModal showRaceEditModal={showRaceEditModal} setShowRaceEditModal={setShowRaceEditModal} />
+            <RaceEditModal race={props.race} showRaceEditModal={showRaceEditModal} setShowRaceEditModal={setShowRaceEditModal} />
         </div>
     );
 }

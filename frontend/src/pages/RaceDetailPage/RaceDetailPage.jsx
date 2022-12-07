@@ -83,7 +83,11 @@ const RaceDetailPage = (props) => {
             "leg_number": formData.legNumber,
             "leg_distance": formData.legDistance,
             "leg_end_place_id": startPlaceId,
-            "race_id": raceId
+            "race_id": raceId,
+            "leg_end_address": formData.address,
+            "leg_end_city": formData.city,
+            "leg_end_state": formData.state,
+            "leg_end_zip": formData.zip
         }
         try {
             let response = await axios.post("http://127.0.0.1:8000/api/race_legs/new/",
@@ -108,13 +112,13 @@ const RaceDetailPage = (props) => {
         setStartPlaceId("");
     }
 
-    async function handleValidateAddress() {
+    async function handleValidateAddress(formData, setPlaceId) {
         let unformatted_address = formData.address + "%20" + formData.city + "%20" + formData.state  + "%20" + formData.zip;
         let formatted_address = unformatted_address.replace(" ", "%20");
         try {
             let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted_address}&key=${keys.googleMapsAPIKey}`);
             if (response.status === 200) {
-                setStartPlaceId(response.data.results[0]["place_id"]);
+                setPlaceId(response.data.results[0]["place_id"]);
             }
         }
         catch (error) {
@@ -124,8 +128,8 @@ const RaceDetailPage = (props) => {
 
     return (
         <div>
-            <RaceDetail race={race} />
-            <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
+            <RaceDetail race={race} token={props.token} />
+            <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} setStartPlaceId={setStartPlaceId} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
             <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} />
         </div>

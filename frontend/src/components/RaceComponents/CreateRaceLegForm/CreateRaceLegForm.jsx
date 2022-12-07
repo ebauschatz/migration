@@ -57,7 +57,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.zip}
                 />
                 <br />
-                <button type="button" onClick={props.handleValidateAddress}>Validate Address</button>
+                <button type="button" onClick={() => props.handleValidateAddress(props.formData, props.setStartPlaceId)}>Validate Address</button>
                 <button type="button" onClick={props.handleFormReset}>Reset</button>
                 <button type="submit" onClick={props.handleSubmit}>Submit</button>
             </form>

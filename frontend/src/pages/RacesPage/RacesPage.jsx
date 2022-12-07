@@ -13,10 +13,10 @@ const RacesPage = (props) => {
         raceStartDate: "",
         raceFinishOpens: "",
         raceFinishCloses: "",
-        raceAddress: "",
-        raceCity: "",
-        raceState: "",
-        raceZip: ""
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
     };
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(initialValues, handleFormSubmit);
     const [startPlaceId, setStartPlaceId] = useState("");
@@ -31,7 +31,7 @@ const RacesPage = (props) => {
     }
 
     async function handleValidateAddress() {
-        let unformatted_address = formData.raceAddress + "%20" + formData.raceCity + "%20" + formData.raceState  + "%20" + formData.raceZip;
+        let unformatted_address = formData.address + "%20" + formData.city + "%20" + formData.state  + "%20" + formData.zip;
         let formatted_address = unformatted_address.replace(" ", "%20");
         try {
             let response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${formatted_address}&key=${keys.googleMapsAPIKey}`);
@@ -50,7 +50,11 @@ const RacesPage = (props) => {
             "race_start_date": formData.raceStartDate,
             "race_finish_opens": formData.raceFinishOpens,
             "race_finish_closes": formData.raceFinishCloses,
-            "race_start_place_id": startPlaceId
+            "race_start_place_id": startPlaceId,
+            "race_start_address": formData.address,
+            "race_start_city": formData.city,
+            "race_start_state": formData.state,
+            "race_start_zip": formData.zip
         };
         try {
             let response = await axios.post("http://127.0.0.1:8000/api/races/new/",

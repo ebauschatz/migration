@@ -42,36 +42,36 @@ const CreateRaceForm = (props) => {
                 <input
                     type="text"
                     required={true}
-                    name="raceAddress"
+                    name="address"
                     onChange={props.handleInputChange}
-                    value={props.formData.raceAddress}
+                    value={props.formData.address}
                 />
                 <br />
                 <label>Race Start City:</label>
                 <input
                     type="text"
                     required={true}
-                    name="raceCity"
+                    name="city"
                     onChange={props.handleInputChange}
-                    value={props.formData.raceCity}
+                    value={props.formData.city}
                 />
                 <br />
                 <label>Race Start State:</label>
                 <input
                     type="text"
                     required={true}
-                    name="raceState"
+                    name="state"
                     onChange={props.handleInputChange}
-                    value={props.formData.raceState}
+                    value={props.formData.state}
                 />
                 <br />
                 <label>Race Start Zip Code:</label>
                 <input
                     type="text"
                     required={true}
-                    name="raceZip"
+                    name="zip"
                     onChange={props.handleInputChange}
-                    value={props.formData.raceZip}
+                    value={props.formData.zip}
                 />
                 <br />
                 <button type="button" onClick={props.handleValidateAddress}>Validate Address</button>

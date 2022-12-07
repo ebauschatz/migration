@@ -1,14 +1,21 @@
 import RaceLegRow from "../RaceLegRow/RaceLegRow";
 import React, { useState } from 'react';
 import LegLocationModal from "../LegLocationModal/LegLocationModal";
+import LegEditModal from '../LegEditModal/LegEditModal';
 
 const RaceLegsList = (props) => {
     const [showLegLocationModal, setShowLegLocationModal] = useState(false);
-    const [modalLeg, setModalLeg] = useState("");
+    const [showLegEditModal, setShowLegEditModal] = useState(false);
+    const [modalLeg, setModalLeg] = useState("");    
 
     function handleShowLegLocation(leg) {
         setModalLeg(leg);
         setShowLegLocationModal(true);
+    }
+
+    function handleShowLegEdit(leg) {
+        setModalLeg(leg);
+        setShowLegEditModal(true);
     }
 
     return (
@@ -22,10 +29,11 @@ const RaceLegsList = (props) => {
                 </thead>
                 <tbody>
                     {props.legs.map((leg) => {
-                        return <RaceLegRow key={leg.id} leg={leg} handleShowLegLocation={handleShowLegLocation} deleteRaceLeg={props.deleteRaceLeg} />
+                        return <RaceLegRow key={leg.id} leg={leg} handleShowLegLocation={handleShowLegLocation} handleShowLegEdit={handleShowLegEdit} deleteRaceLeg={props.deleteRaceLeg} />
                     })}
                 </tbody>
             </table>
+            <LegEditModal modalLeg={modalLeg} showLegEditModal={showLegEditModal} setShowLegEditModal={setShowLegEditModal} handleValidateAddress={props.handleValidateAddress} token={props.token} getRaceLegs={props.getRaceLegs} />
             <LegLocationModal modalLeg={modalLeg} showLegLocationModal={showLegLocationModal} setShowLegLocationModal={setShowLegLocationModal} />
         </div>
     );

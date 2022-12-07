@@ -129,9 +129,10 @@ const RaceDetailPage = (props) => {
     return (
         <div>
             <RaceDetail race={race} token={props.token} />
-            <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} setStartPlaceId={setStartPlaceId} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
+            <h4>Add A New Leg</h4>
+            <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} setPlaceId={setStartPlaceId} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
-            <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} />
+            <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} handleValidateAddress={handleValidateAddress} token={props.token} getRaceLegs={getRaceLegs} />
         </div>
     );
 }

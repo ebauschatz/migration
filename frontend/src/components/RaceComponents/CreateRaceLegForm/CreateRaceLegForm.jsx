@@ -1,7 +1,6 @@
 const CreateRaceLegForm = (props) => {
     return (
         <div>
-            <h4>Add A New Leg</h4>
             <form>
                 <label>Leg Number: </label>
                 <input
@@ -57,7 +56,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.zip}
                 />
                 <br />
-                <button type="button" onClick={() => props.handleValidateAddress(props.formData, props.setStartPlaceId)}>Validate Address</button>
+                <button type="button" onClick={() => props.handleValidateAddress(props.formData, props.setPlaceId)}>Validate Address</button>
                 <button type="button" onClick={props.handleFormReset}>Reset</button>
                 <button type="submit" onClick={props.handleSubmit}>Submit</button>
             </form>

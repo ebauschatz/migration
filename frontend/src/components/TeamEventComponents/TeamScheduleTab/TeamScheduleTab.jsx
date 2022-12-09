@@ -10,11 +10,11 @@ const TeamScheduleTab = (props) => {
     const [teamFinshTimeIssue, setTeamFinishTimeIssue] = useState(false);
 
     useEffect(() => {
-        fetchRunnerLegs();
-        fetchTeam();
+        getRunnerLegs();
+        getTeam();
     }, [props.token, props.teamId]);
 
-    async function fetchTeam() {
+    async function getTeam() {
         try {
             let response = await axios.get(`http://127.0.0.1:8000/api/teams/${props.teamId}/`, {
                 headers: {
@@ -31,7 +31,7 @@ const TeamScheduleTab = (props) => {
         }
     }
 
-    async function fetchRunnerLegs() {
+    async function getRunnerLegs() {
         try {
             let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/team/${props.teamId}/`, {
                 headers: {
@@ -63,7 +63,7 @@ const TeamScheduleTab = (props) => {
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
             {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
             <h1>Team Schedule Table</h1>
-            <TeamScheduleTable runnerLegs={runnerLegs} />
+            <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} />
         </div>
     );
 }

@@ -49,6 +49,28 @@ const TeamScheduleTab = (props) => {
         }
     }
 
+    async function startTeamRace() {
+        let raceStartData = {
+            "team_start": new Date().toLocaleString("sv-SE"),
+            "runner_leg_id": runnerLegs[0].id
+        }
+        try {
+            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/begin/${props.teamId}/`, 
+                raceStartData,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                    },
+            });
+            if (response.status === 200) {
+                getRunnerLegs();
+                getTeam();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     function checkTeamFinishTime(teamFinishTime, raceFinishOpens, raceFinishCloses) {
         if (teamFinishTime < raceFinishOpens || teamFinishTime > raceFinishCloses) {
             setTeamFinishTimeIssue(true);
@@ -62,6 +84,7 @@ const TeamScheduleTab = (props) => {
         <div>
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
             {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
+            <button type="button" onClick={() => startTeamRace()}>Start Race</button>
             <h1>Team Schedule Table</h1>
             <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} />
         </div>

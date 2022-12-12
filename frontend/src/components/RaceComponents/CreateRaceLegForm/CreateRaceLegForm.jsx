@@ -1,8 +1,10 @@
+import './CreateRaceLegForm.css'
+
 const CreateRaceLegForm = (props) => {
     return (
-        <div>
-            <form>
-                <label>Leg Number: </label>
+        <div className="leg-form-container">
+            <form className="leg-form">
+                <label>Number: </label>
                 <input
                     type="text"
                     required={true}
@@ -10,8 +12,7 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.legNumber}
                 />
-                <br />
-                <label>Leg Distance: </label>
+                <label>Distance: </label>
                 <input
                     type="text"
                     required={true}
@@ -19,8 +20,7 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.legDistance}
                 />
-                <br />
-                <label>Leg End Street Address:</label>
+                <label>End Street Address:</label>
                 <input
                     type="text"
                     required={true}
@@ -28,8 +28,7 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.address}
                 />
-                <br />
-                <label>Leg End City:</label>
+                <label>End City:</label>
                 <input
                     type="text"
                     required={true}
@@ -37,8 +36,7 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.city}
                 />
-                <br />
-                <label>Leg End State:</label>
+                <label>End State:</label>
                 <input
                     type="text"
                     required={true}
@@ -46,8 +44,7 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.state}
                 />
-                <br />
-                <label>Leg End Zip Code:</label>
+                <label>End Zip Code:</label>
                 <input
                     type="text"
                     required={true}
@@ -55,11 +52,14 @@ const CreateRaceLegForm = (props) => {
                     onChange={props.handleInputChange}
                     value={props.formData.zip}
                 />
-                <br />
-                <button type="button" onClick={() => props.handleValidateAddress(props.formData, props.setPlaceId)}>Validate Address</button>
-                <button type="button" onClick={props.handleFormReset}>Reset</button>
-                <button type="submit" onClick={props.handleSubmit}>Submit</button>
             </form>
+            <div>
+                <button type="button" className="leg-form-button" onClick={() => props.handleValidateAddress(props.formData, props.setPlaceId)}>Validate Address</button>
+            </div>
+            <div>
+                <button type="button" className="leg-form-button" onClick={props.handleFormReset}>Reset</button>
+                <button type="submit" className="leg-form-button" onClick={props.handleSubmit}>Submit</button>
+            </div>
         </div>
     );
 }

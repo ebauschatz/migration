@@ -59,7 +59,7 @@ const LegEditModal = (props) => {
     return (
         <Modal show={props.showLegEditModal}>
             <Modal.Header>
-                Edit Leg Details
+                <h4>Edit Leg Details</h4>
                 <button type="button" onClick={() => props.setShowLegEditModal(false)}>Cancel</button>
             </Modal.Header>
             <Modal.Body>

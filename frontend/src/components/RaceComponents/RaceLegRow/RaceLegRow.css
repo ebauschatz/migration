@@ -1,0 +1,24 @@
+.leg-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.leg-row:hover {
+    background-color: #69d38b;
+}
+
+.leg-data-element {
+    padding: 0rem 0.5rem;
+}
+
+.leg-exchange-view:hover {
+    color: white;
+}
+
+.leg-delete-icon:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.leg-view-edit:hover {
+    color: yellow;
+}

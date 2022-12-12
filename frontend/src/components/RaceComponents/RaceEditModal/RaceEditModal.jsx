@@ -73,9 +73,9 @@ const RaceEditModal = (props) => {
     }
 
     return (
-        <Modal show={props.showRaceEditModal} size="lg">
+        <Modal show={props.showRaceEditModal}>
             <Modal.Header>
-                Edit Race Details
+                <h4>Edit Race Details</h4>
                 <button type="button" onClick={() => props.setShowRaceEditModal(false)}>Cancel</button>
             </Modal.Header>
             <Modal.Body>

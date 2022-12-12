@@ -7,6 +7,7 @@ import RaceLegsList from '../../components/RaceComponents/RaceLegsList/RaceLegsL
 import CreateRaceLegForm from '../../components/RaceComponents/CreateRaceLegForm/CreateRaceLegForm';
 import RaceLocationMap from '../../components/RaceComponents/RaceLocationMap/RaceLocationMap';
 import keys from '../../API_Keys.json';
+import './RaceDetailPage.css'
 
 const RaceDetailPage = (props) => {
     const {raceId} = useParams();
@@ -127,12 +128,15 @@ const RaceDetailPage = (props) => {
     }
 
     return (
-        <div>
+        <div className="detail-page-container">
             <RaceDetail race={race} token={props.token} />
-            <h4>Add A New Leg</h4>
-            <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} setPlaceId={setStartPlaceId} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
-            {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
-            <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} handleValidateAddress={handleValidateAddress} token={props.token} getRaceLegs={getRaceLegs} />
+            <div>
+                <div className="section-header">Legs</div>
+                <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} handleValidateAddress={handleValidateAddress} token={props.token} getRaceLegs={getRaceLegs} />
+                <div className="section-header">Add A New Leg</div>
+                <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} setPlaceId={setStartPlaceId} handleValidateAddress={handleValidateAddress} handleFormReset={handleFormReset} handleSubmit={handleSubmit} />
+                {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
+            </div>
         </div>
     );
 }

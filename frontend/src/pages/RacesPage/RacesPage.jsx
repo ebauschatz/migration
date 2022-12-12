@@ -5,7 +5,6 @@ import RaceLocationMap from '../../components/RaceComponents/RaceLocationMap/Rac
 import CreateRaceForm from '../../components/RaceComponents/CreateRaceForm/CreateRaceForm';
 import RacesList from '../../components/RaceComponents/RacesList/RacesList';
 import keys from '../../API_Keys.json';
-import './RacesPage.css'
 
 const RacesPage = (props) => {
     const [races, setRaces] = useState([]);

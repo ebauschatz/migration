@@ -1,23 +1,26 @@
-const JoinRacesList = (props) => {
+import './JoinRacesList.css';
 
+const JoinRacesList = (props) => {
     return (
-        <table>
-            <thead>
-                <tr>
-                    <td>Race Name</td>
-                    <td>Start Date</td>
-                </tr>
-            </thead>
-            <tbody>
-                {props.races.map((race) => {
-                    return <tr key={race.id} onClick={() => props.setRaceId(race.id)}>
-                        <td>{race.race_name}</td>
-                        <td>{race.race_start_date}</td>
+        <div>
+            <div className="section-header">Available Races</div>
+            <table className="join-race-table">
+                <thead>
+                    <tr>
+                        <th className="join-race-element">Race Name</th>
+                        <th className="join-race-element">Start Date</th>
                     </tr>
-                })}
-            </tbody>
-            
-        </table>
+                </thead>
+                <tbody>
+                    {props.races.map((race) => {
+                        return <tr key={race.id} onClick={() => props.setRaceId(race.id)} className="join-race-row">
+                            <td className="join-race-data">{race.race_name}</td>
+                            <td className="join-race-data">{race.race_start_date}</td>
+                        </tr>
+                    })}
+                </tbody>
+            </table>
+            </div>
     );
 }
  

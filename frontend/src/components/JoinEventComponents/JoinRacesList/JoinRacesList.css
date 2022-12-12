@@ -1,0 +1,26 @@
+.join-race-table {
+    text-align: left;
+    border: 1px solid #226a27;
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-race-element {
+    border-bottom: 1px solid #226a27;
+    padding: 0.5rem;
+}
+
+.join-race-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.join-race-row:hover {
+    background-color: #69d38b;
+}
+
+.join-race-data {
+    padding: 0rem 0.5rem;
+}

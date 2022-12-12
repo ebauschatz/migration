@@ -1,14 +1,15 @@
 import RaceRow from "../RaceRow/RaceRow";
+import './RacesList.css'
 
 const RacesList = (props) => {
     return (
-        <table>
+        <table className="race-table">
             <thead>
                 <tr>
-                    <th>Race Name</th>
-                    <th>Race Start Date</th>
-                    <th></th>
-                    <th></th>
+                    <th className="race-element">Name</th>
+                    <th className="race-element">Start Date</th>
+                    <th className="race-element"></th>
+                    <th className="race-element"></th>
                 </tr>
             </thead>
             <tbody>

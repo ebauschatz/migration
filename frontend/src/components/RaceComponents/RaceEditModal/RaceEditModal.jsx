@@ -73,7 +73,7 @@ const RaceEditModal = (props) => {
     }
 
     return (
-        <Modal show={props.showRaceEditModal}>
+        <Modal show={props.showRaceEditModal} size="lg">
             <Modal.Header>
                 Edit Race Details
                 <button type="button" onClick={() => props.setShowRaceEditModal(false)}>Cancel</button>

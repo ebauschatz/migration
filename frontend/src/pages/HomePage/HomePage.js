@@ -16,7 +16,9 @@ const HomePage = (props) => {
             Authorization: "Bearer " + props.token,
           },
         });
-        setEvents(response.data);
+        let unsortedEvents = response.data;
+        let sortedEvents = [...unsortedEvents].sort((a, b) => (a.team.race.race_start_date > b.team.race.race_start_date) ? 1 : -1);
+        setEvents(sortedEvents);
       }
       catch (error) {
         console.log(error.response.data);
@@ -27,7 +29,6 @@ const HomePage = (props) => {
 
   return (
     <div className="container">
-      <h1>Home Page for {props.user.first_name}!</h1>
       <button onClick={() => navigate("/join")}>Join An Event</button>
       <EventList events={events} />
     </div>

@@ -5,6 +5,7 @@ import RaceLocationMap from '../../components/RaceComponents/RaceLocationMap/Rac
 import CreateRaceForm from '../../components/RaceComponents/CreateRaceForm/CreateRaceForm';
 import RacesList from '../../components/RaceComponents/RacesList/RacesList';
 import keys from '../../API_Keys.json';
+import './RacesPage.css'
 
 const RacesPage = (props) => {
     const [races, setRaces] = useState([]);
@@ -108,9 +109,15 @@ const RacesPage = (props) => {
 
     return (
         <div>
+            <div className="section-header">
+                All Races
+            </div>
+            <RacesList races={races} deleteRace={deleteRace} />
+            <div className="section-header">
+                Add A New Race
+            </div>
             <CreateRaceForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} handleValidateAddress={handleValidateAddress} handleReset={handleReset} handleFormSubmit={handleFormSubmit} />
             {startPlaceId !== "" && <RaceLocationMap placeId={startPlaceId} />}
-            <RacesList races={races} deleteRace={deleteRace} />
         </div>
     );
 }

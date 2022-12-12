@@ -9,11 +9,11 @@ li {
 }
 
 .navBar {
-  background: steelblue;
+  background: #226a27;
   box-shadow: 4px 2px 5px gray;
   color: white;
   margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
+  padding: 1rem 1rem;
 }
 
 .navBar button {
@@ -25,11 +25,17 @@ li {
 
 .navBar button:hover {
   background: white;
-  color: steelblue;
+  color: #226a27;
   cursor: pointer;
 }
 
 .brand {
   cursor: pointer;
   font-size: 2rem;
+  margin: 0rem 1rem;
+}
+
+.navSection {
+  display: flex;
+  justify-content: space-between;
 }

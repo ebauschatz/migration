@@ -1,0 +1,30 @@
+.join-team-table {
+    text-align: center;
+    border: 1px solid #226a27;
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+
+.join-team-element {
+    border-bottom: 1px solid #226a27;
+    padding: 0.5rem;
+}
+
+.join-team-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.join-team-row:hover {
+    background-color: #69d38b;
+}
+
+.join-team-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

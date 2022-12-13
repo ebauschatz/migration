@@ -4,10 +4,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import './JoinTeamModal.css'
 
 const JoinTeamModal = (props) => {
     const navigate = useNavigate();
-    const [pace, setPace] = useState("");
+    const [pace, setPace] = useState("00:00");
     const [teamRole, setTeamRole] = useState({"id":0, "role_name": "Select"});
 
     function resetForm() {
@@ -47,41 +48,37 @@ const JoinTeamModal = (props) => {
     }
 
     return (
-        <Modal show={props.showJoinModal}>
+        <Modal show={props.showJoinModal} size="lg">
             <Modal.Header>
                 <Modal.Title>Join {props.selectedTeam.team_name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div onSubmit={submitRegistration}>
-                    <div>
+                <div onSubmit={submitRegistration} className="join-team-form-container">
+                    <form className="join-team-form">
                         <label>
                             Enter your mile pace in MM:SS
                         </label>
-                    </div>
-                    <div>
                         <input
                             type="text"
                             required={true}
                             onChange={(event) => setPace(event.target.value)}
                             value={pace}
                         />
-                    </div>
-                    <div>
                         <label>
                             Select your role
                         </label>
-                        <DropdownButton id="role-dropdown" title={teamRole.role_name}>
+                        <DropdownButton id="role-dropdown" title={teamRole.role_name} variant="success">
                             {props.allTeamRoles.map((teamRole) => {
                                 return <Dropdown.Item key={teamRole.id} onClick={() => setTeamRole(teamRole)}>{teamRole.role_name}</Dropdown.Item>
                             })}
                         </DropdownButton>
-                    </div>
+                    </form>
                 </div>
             </Modal.Body>
             <Modal.Footer>
                 <div>
-                    <button type="button" onClick={cancelRegistration}>Cancel</button>
-                    <button type="submit" onClick={submitRegistration}>Submit</button>
+                    <button type="button" onClick={cancelRegistration} className="join-team-form-button">Cancel</button>
+                    <button type="submit" onClick={submitRegistration} className="join-team-form-button">Submit</button>
                 </div>
             </Modal.Footer>
         </Modal>

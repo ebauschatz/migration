@@ -3,7 +3,7 @@ import './JoinRacesList.css';
 const JoinRacesList = (props) => {
     return (
         <div>
-            <div className="section-header">Available Races</div>
+            <div className="section-header">All Races</div>
             <table className="join-race-table">
                 <thead>
                     <tr>

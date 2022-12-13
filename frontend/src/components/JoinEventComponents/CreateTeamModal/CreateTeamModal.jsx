@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './CreateTeamModal.css';
 
 const CreateTeamModal = (props) => {
     const navigate = useNavigate();
@@ -56,45 +57,39 @@ const CreateTeamModal = (props) => {
     }
     
     return (
-        <Modal show={props.showCreateTeamModal}>
+        <Modal show={props.showCreateTeamModal} size="lg">
             <Modal.Header>
                 <Modal.Title>Create and Join a Team</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div>
-                    <form onSubmit={handleSubmit}>
+                <div className="create-team-form-container">
+                    <form onSubmit={handleSubmit} className="create-team-form">
                         <label>Enter your team name:</label>
-                        <br />
-                        <input
+                        <input className="create-team-form-field"
                             type="text"
                             name="teamNameText"
                             required={true}
                             onChange={handleInputChange}
                             value={formData.teamNameText}
                         />
-                        <br />
                         <label>Enter your team start date and time:</label>
-                        <input 
+                        <input className="create-team-form-field"
                             type="datetime-local"
                             name="teamStart"
                             required={true}
                             onChange={handleInputChange}
                             value={formData.teamStart}
                         />
-                        <br />
                         <label>Enter your mile pace in MM:SS</label>
-                        <br />
-                        <input 
+                        <input className="create-team-form-field"
                             type="text"
                             name="paceText"
                             required={true}
                             onChange={handleInputChange}
                             value={formData.paceText}
                         />
-                        <br />
                         <label>Select your role:</label>
-                        <br />
-                        <DropdownButton id="role-dropdown" title={teamRole.role_name}>
+                        <DropdownButton id="role-dropdown" title={teamRole.role_name} variant="success">
                             {props.allTeamRoles.map((teamRole) => {
                                 return <Dropdown.Item key={teamRole.id} onClick={() => setTeamRole(teamRole)}>{teamRole.role_name}</Dropdown.Item>
                             })}
@@ -104,8 +99,8 @@ const CreateTeamModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <div>
-                    <button type="button" onClick={handleCancel}>Cancel</button>
-                    <button type="submit" onClick={handleSubmit}>Submit</button>
+                    <button type="button" onClick={handleCancel} className="create-team-form-button">Cancel</button>
+                    <button type="submit" onClick={handleSubmit} className="create-team-form-button">Submit</button>
                 </div>
             </Modal.Footer>
         </Modal>

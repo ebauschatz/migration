@@ -1,0 +1,21 @@
+.join-team-form {
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    gap: 0.25rem;
+    margin: 0.5rem 0rem;
+}
+
+.join-team-form-field {
+    padding: 0.1rem;
+    border: 1px solid #226a27;
+}
+
+.join-team-form-button {
+    margin: 0rem 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.join-team-form-container {
+    display: flex;
+    justify-content: center;
+}

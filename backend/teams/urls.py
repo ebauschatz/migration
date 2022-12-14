@@ -5,4 +5,5 @@ urlpatterns = [
     path('race/<int:race_id>/', views.teams_for_race),
     path('new/', views.create_team),
     path('<int:team_id>/', views.single_team),
+    path('begin/<int:team_id>/', views.begin_race),
 ]

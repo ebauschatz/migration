@@ -2,10 +2,12 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from .models import Team
 from .serializers import TeamSerializer
+from runner_legs.models import RunnerLeg
+from runner_legs.serializers import RunnerLegSerializer
 
 
 @api_view(['GET'])
@@ -40,3 +42,20 @@ def single_team(request, team_id):
     if (request.method == 'GET'):
         serializer = TeamSerializer(team)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def begin_race(request, team_id):
+    team = get_object_or_404(Team, id=team_id)
+    team_serializer = TeamSerializer(team, data=request.data, partial=True)
+    if team_serializer.is_valid():
+        team_serializer.save()
+        runner_leg = get_object_or_404(RunnerLeg, id=request.data['runner_leg_id'])
+        runner_leg_serializer = RunnerLegSerializer(runner_leg, data={'is_in_progress': True, 'runner_leg_start': request.data['team_start']}, partial=True)
+        if runner_leg_serializer.is_valid():
+            runner_leg_serializer.save()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)

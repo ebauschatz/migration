@@ -1,0 +1,14 @@
+.leg-table {
+    text-align: left;
+    border: 1px solid #226a27;
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.leg-element {
+    border-bottom: 1px solid #226a27;
+    padding: 0.5rem;
+}

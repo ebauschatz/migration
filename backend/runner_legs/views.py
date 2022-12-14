@@ -2,13 +2,15 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from django.shortcuts import get_object_or_404
 from .models import RunnerLeg
 from .serializers import RunnerLegSerializer
 from runners.models import Runner
 from race_legs.models import RaceLeg
-from datetime import datetime, timedelta
+from race_legs.serializers import RaceLegSerializer
+from datetime import datetime
 from .utilities import calculate_leg_end_time
 
 @api_view(['GET'])
@@ -18,9 +20,35 @@ def get_all_legs_for_runner(request, runner_id):
     serializer = RunnerLegSerializer(runner_legs, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_legs_for_team(request, team_id):
+    runner_legs = RunnerLeg.objects.filter(runner__team__pk=team_id)
+    serializer = RunnerLegSerializer(runner_legs, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_unassigned_team_legs(request, team_id):
+    assigned_race_leg_ids = RunnerLeg.objects.filter(runner__team__pk=team_id).values_list('race_leg_id', flat=True)
+    all_race_legs = RaceLeg.objects.filter(race__team__pk=team_id)
+    unassigned_race_legs = all_race_legs.exclude(id__in=assigned_race_leg_ids)
+    serializer = RaceLegSerializer(unassigned_race_legs, many=True)
+    return Response(serializer.data)
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_runner_leg(request):
+    request.data["runner_leg_end"] = request.data["runner_leg_start"]
+    serializer = RunnerLegSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_runner_leg_calculate_end_time(request):
     runner = get_object_or_404(Runner, id=request.data["runner_id"])
     start_datetime = datetime.strptime(request.data["runner_leg_start"], '%Y-%m-%d %H:%M:%S')
     race_leg = get_object_or_404(RaceLeg, id=request.data["race_leg_id"])
@@ -29,4 +57,14 @@ def create_runner_leg(request):
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_runner_leg(request, runner_leg_id):
+    runner_leg = get_object_or_404(RunnerLeg, id=runner_leg_id)
+    serializer = RunnerLegSerializer(runner_leg, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

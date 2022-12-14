@@ -1,0 +1,13 @@
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav.nav-tabs .nav-link {
+    color: black;
+}
+
+.nav.nav-tabs .nav-link.active {
+    font-weight: bold;
+    color: green;
+}

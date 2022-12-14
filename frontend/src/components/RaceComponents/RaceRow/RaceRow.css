@@ -1,0 +1,20 @@
+.data-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.data-row:hover {
+    background-color: #69d38b;
+}
+
+.data-element {
+    padding: 0rem 0.5rem;
+}
+
+.delete-icon:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.view-edit:hover {
+    color: yellow;
+}

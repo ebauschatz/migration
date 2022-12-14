@@ -1,0 +1,14 @@
+.unassigned-table {
+    text-align: left;
+    border: 1px solid #226a27;
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.unassigned-element {
+    border-bottom: 1px solid #226a27;
+    padding: 0.5rem;
+}

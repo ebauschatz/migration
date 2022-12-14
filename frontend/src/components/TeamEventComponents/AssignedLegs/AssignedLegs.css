@@ -1,0 +1,14 @@
+.assigned-table {
+    text-align: left;
+    border: 1px solid #226a27;
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.assigned-element {
+    border-bottom: 1px solid #226a27;
+    padding: 0.5rem;
+}

@@ -1,0 +1,23 @@
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-details {
+    margin-bottom: 1rem;
+}
+
+.detail-label {
+    font-weight: bold;
+}
+
+.detail {
+    font-size: 1.25rem;
+}
+
+.edit-button {
+    margin: 1rem 0rem;
+    padding: 0.5rem 1rem;
+}

@@ -1,0 +1,15 @@
+.assigned-leg-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.assigned-leg-row:hover {
+    background-color: #69d38b;
+}
+
+.assigned-leg-data-element {
+    padding: 0.25rem 0.5rem;
+}
+
+.reassign-links:hover {
+    color: white;
+}

@@ -1,9 +1,10 @@
 import Event from "../Event/Event";
+import './EventList.css';
 
 const EventList = (props) => {
     return (
-        <div>
-            <h2>List of Events</h2>
+        <div className="event-list">
+            <h2>Your Events</h2>
             {props.events.map((event) => {
                 return <Event key={event.id} event={event} />
             })}

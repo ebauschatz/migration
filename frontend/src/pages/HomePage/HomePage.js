@@ -1,37 +1,35 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
 import EventList from "../../components/EventList/EventList";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
 
-const HomePage = () => {
+const HomePage = (props) => {
   const navigate = useNavigate();
-  const [user, token] = useAuth();
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/runners/user/${user.id}/`, {
+        let response = await axios.get(`http://127.0.0.1:8000/api/runners/user/${props.user.id}/`, {
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + props.token,
           },
         });
-        setEvents(response.data);
+        let unsortedEvents = response.data;
+        let sortedEvents = [...unsortedEvents].sort((a, b) => (a.team.race.race_start_date > b.team.race.race_start_date) ? 1 : -1);
+        setEvents(sortedEvents);
       }
       catch (error) {
         console.log(error.response.data);
       }
     }
     fetchEvents();
-  }, [token, user.id]);
+  }, [props.token, props.user.id]);
 
   return (
     <div className="container">
-      <h1>Home Page for {user.first_name}!</h1>
-      <button onClick={() => navigate("/login")}>Join A Team</button>
+      <button onClick={() => navigate("/join")}>Join An Event</button>
       <EventList events={events} />
     </div>
   );

@@ -1,0 +1,18 @@
+.leg-form {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    gap: 0.25rem;
+    margin: 0.5rem 0rem;
+}
+
+.leg-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.leg-form-button {
+    margin: 0.25rem 0.5rem;
+    padding: 0.5rem 1rem;
+}

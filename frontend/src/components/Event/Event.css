@@ -1,0 +1,19 @@
+.event-card {
+    width: 50%;
+    margin: 1rem;
+    padding: 1rem 0rem;
+    box-shadow: 3px 3px 8px #226a27;
+}
+
+.event-card:hover {
+    box-shadow: 3px 3px 15px #226a27;
+}
+
+.event-name {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.team-name {
+    font-weight: bold;
+}

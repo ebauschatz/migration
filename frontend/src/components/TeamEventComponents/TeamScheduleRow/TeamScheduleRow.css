@@ -1,0 +1,15 @@
+.schedule-row:nth-child(odd) {
+    background-color: #d8f7e2;
+}
+
+.schedule-row:hover {
+    background-color: #69d38b;
+}
+
+.schedule-data-element {
+    padding: 0.1rem 0.5rem;
+}
+
+.schedule-time:hover {
+    color: yellow;
+}

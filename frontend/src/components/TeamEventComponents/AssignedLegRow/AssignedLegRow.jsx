@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import './AssignedLegRow.css'
 
 const AssignedLegRow = (props) => {
     const dummyRunner = {"user": {"first_name": "Reassign"}};
@@ -24,20 +25,20 @@ const AssignedLegRow = (props) => {
     }
 
     return (
-        <tr>
-            <td>{props.runnerLeg.race_leg.leg_number}</td>
-            <td>{props.runnerLeg.race_leg.leg_distance}</td>
-            <td>{props.runnerLeg.runner.user.first_name}</td>
-            <td>{props.runnerLeg.runner.runner_pace}</td>
-            <td>
-                <DropdownButton id="runner-dropdown" title={runner.user.first_name}>
+        <tr className="assigned-leg-row">
+            <td className="assigned-leg-data-element">{props.runnerLeg.race_leg.leg_number}</td>
+            <td className="assigned-leg-data-element">{props.runnerLeg.race_leg.leg_distance}</td>
+            <td className="assigned-leg-data-element">{props.runnerLeg.runner.user.first_name}</td>
+            <td className="assigned-leg-data-element">{props.runnerLeg.runner.runner_pace}</td>
+            <td className="assigned-leg-data-element">
+                <DropdownButton id="runner-dropdown" title={runner.user.first_name} variant="success" size="sm">
                     {props.runners.map((runner) => {
                         return <Dropdown.Item key={runner.id} onClick={() => setRunner(runner)}>{runner.user.first_name}</Dropdown.Item>
                     })}
                 </DropdownButton>
             </td>
-            <td onClick={resetRunner}>Clear</td>
-            <td onClick={handleSubmitReassign}>Submit</td>
+            <td onClick={resetRunner} className="assigned-leg-data-element reassign-links">Clear</td>
+            <td onClick={handleSubmitReassign} className="assigned-leg-data-element reassign-links">Submit</td>
         </tr>
     );
 }

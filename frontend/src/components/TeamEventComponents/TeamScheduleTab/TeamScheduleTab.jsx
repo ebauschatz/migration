@@ -3,6 +3,7 @@ import axios from "axios";
 import TeamScheduleTable from "../TeamScheduleTable/TeamScheduleTable";
 import TeamScheduleTimes from "../TeamScheduleTimes/TeamScheduleTimes";
 import TeamScheduleFinishProblem from '../TeamScheduleFinishProblem/TeamScheduleFinishProblem';
+import './TeamScheduleTab.css'
 
 const TeamScheduleTab = (props) => {
     const [runnerLegs, setRunnerLegs] = useState([]);
@@ -84,8 +85,7 @@ const TeamScheduleTab = (props) => {
         <div>
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
             {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
-            <button type="button" onClick={() => startTeamRace()}>Start Race</button>
-            <h1>Team Schedule Table</h1>
+            <div className="start-button"><button type="button" onClick={() => startTeamRace()}>Start Race</button></div>
             <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} />
         </div>
     );

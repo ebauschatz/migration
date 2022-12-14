@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import AssignedLegRow from '../AssignedLegRow/AssignedLegRow';
+import './AssignedLegs.css'
 
 const AssignedLegs = (props) => {
     useEffect(() => {
@@ -8,14 +9,17 @@ const AssignedLegs = (props) => {
 
     return (
         <div>
-            <h2>Assigned Legs</h2>
-            <table>
+            <div className="section-header">Assigned Legs</div>
+            <table className="assigned-table">
                 <thead>
                     <tr>
-                        <th>Leg Number</th>
-                        <th>Leg Distance</th>
-                        <th>Runner Name</th>
-                        <th>Runner Pace</th>
+                        <th className="assigned-element">Leg Number</th>
+                        <th className="assigned-element">Leg Distance</th>
+                        <th className="assigned-element">Runner Name</th>
+                        <th className="assigned-element">Runner Pace</th>
+                        <th  className="assigned-element"></th>
+                        <th  className="assigned-element"></th>
+                        <th  className="assigned-element"></th>
                     </tr>
                 </thead>
                 <tbody>

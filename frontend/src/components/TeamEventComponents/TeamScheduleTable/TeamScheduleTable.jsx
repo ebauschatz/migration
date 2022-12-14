@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import TeamScheduleRow from "../TeamScheduleRow/TeamScheduleRow";
 import TeamScheduleChangeDateTime from '../TeamScheduleChangeDateTime/TeamScheduleChangeDateTime';
+import './TeamScheduleTable.css'
 
 const TeamScheduleTable = (props) => {
     const [showStartTimeEditModal, setShowStartTimeEditModal] = useState(false);
@@ -65,14 +66,14 @@ const TeamScheduleTable = (props) => {
 
     return ( 
         <div>
-            <table>
+            <table className="schedule-table">
                 <thead>
                     <tr>
-                        <td>Leg Number</td>
-                        <td>Distance</td>
-                        <td>Runner</td>
-                        <td>Start</td>
-                        <td>End</td>
+                        <th className="schedule-element">Leg Number</th>
+                        <th className="schedule-element">Distance</th>
+                        <th className="schedule-element">Runner</th>
+                        <th className="schedule-element">Start Time</th>
+                        <th className="schedule-element">End Time</th>
                     </tr>
                 </thead>
                 <tbody>

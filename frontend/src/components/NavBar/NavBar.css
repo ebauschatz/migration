@@ -13,14 +13,16 @@ li {
   box-shadow: 4px 2px 5px gray;
   color: white;
   margin-bottom: 2rem;
-  padding: 1rem 1rem;
+  padding-top: 1rem;
 }
 
 .navBar button {
   background: transparent;
   border: 2px solid white;
   color: white;
-  padding: 0.4rem 0.5rem;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  margin: 0rem 0.75rem 0.75rem 0rem;
 }
 
 .navBar button:hover {
@@ -31,7 +33,7 @@ li {
 
 .brand {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.25rem;
   margin: 0rem 1rem;
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import UnassignedLegRow from "../UnassignedLegRow/UnassignedLegRow";
+import './UnassignedLegs.css'
 
 const UnassignedLegs = (props) => {
     useEffect(() => {
@@ -8,12 +9,15 @@ const UnassignedLegs = (props) => {
 
     return (
         <div>
-            <h2>Unassigned Legs</h2>
-            <table>
+            <div className="section-header">Unassigned Legs</div>
+            <table className="unassigned-table">
                 <thead>
                     <tr>
-                        <th>Leg Number</th>
-                        <th>Leg Distance</th>
+                        <th className="unassigned-element">Leg Number</th>
+                        <th className="unassigned-element">Leg Distance</th>
+                        <th className="unassigned-element"></th>
+                        <th className="unassigned-element"></th>
+                        <th className="unassigned-element"></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import TeamScheduleChangeDateTime from '../TeamScheduleChangeDateTime/TeamScheduleChangeDateTime';
+import './TeamScheduleTimes.css'
 
 const TeamScheduleTimes = (props) => {
     const [showStartTimeEditModal, setShowStartTimeEditModal] = useState(false);
@@ -47,13 +48,13 @@ const TeamScheduleTimes = (props) => {
     }
     
     return (
-        <div>
+        <div className="times-container">
             <div>
-                Team Start Time: <span onClick={() => setShowStartTimeEditModal(true)}>{props.team.team_start}</span>
+                <b>Team Start Time:</b> <span onClick={() => setShowStartTimeEditModal(true)} className="team-time">{props.team.team_start}</span>
                 <TeamScheduleChangeDateTime showTimeEditModal={showStartTimeEditModal} setShowTimeEditModal={setShowStartTimeEditModal} initialValue={props.team.team_start} handleSubmit={updateTeamStartTime} />
             </div>
             <div>
-                Team End Time: <span onClick={() => setShowEndTimeEditModal(true)}>{props.team.team_end}</span>
+                <b>Team End Time:</b> <span onClick={() => setShowEndTimeEditModal(true)} className="team-time">{props.team.team_end}</span>
                 <TeamScheduleChangeDateTime showTimeEditModal={showEndTimeEditModal} setShowTimeEditModal={setShowEndTimeEditModal} initialValue={props.team.team_end} handleSubmit={updateTeamEndTime} />
             </div>
         </div>

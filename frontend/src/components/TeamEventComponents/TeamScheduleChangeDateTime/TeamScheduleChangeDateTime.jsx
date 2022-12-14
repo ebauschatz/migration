@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import './TeamScheduleChangeDateTime.css'
 
 const TeamScheduleChangeDateTime = (props) => {
     const initialFormValue = props.initialValue ? props.initialValue.replace("Z","") : "";
@@ -10,15 +11,17 @@ const TeamScheduleChangeDateTime = (props) => {
     }, [props.initialValue]);
 
     return (
-        <Modal show={props.showTimeEditModal}>
-            <Modal.Header>Edit Timestamp</Modal.Header>
+        <Modal show={props.showTimeEditModal} size="sm">
+            <Modal.Header><b>Edit Timestamp</b></Modal.Header>
             <Modal.Body>
-                <input
-                    type="datetime-local"
-                    required={true}
-                    value={newValue}
-                    onChange={(e) => setNewValue(e.target.value)}
-                ></input>
+                <div className="time-input">
+                    <input
+                        type="datetime-local"
+                        required={true}
+                        value={newValue}
+                        onChange={(e) => setNewValue(e.target.value)}
+                    ></input>
+                </div>
             </Modal.Body>
             <Modal.Footer>
                 <button type="button" onClick={() => props.setShowTimeEditModal(false)}>Cancel</button>

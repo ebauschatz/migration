@@ -95,6 +95,30 @@ const TeamScheduleTab = (props) => {
         }
     }
 
+    async function exchangeRunners(exchangeTime) {
+        let legs = runnerLegs.filter((runnerLeg) => runnerLeg.is_completed === false);
+        let legIds = legs.map((runnerLeg) => runnerLeg.id);
+        let exchangeData = {
+            "exchange_time": exchangeTime,
+            "legs": legIds
+        };
+        try {
+            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/exchange/${props.teamId}/`, 
+                exchangeData,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                    },
+            });
+            if (response.status === 200) {
+                getRunnerLegs();
+                getTeam();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     function checkTeamFinishTime(teamFinishTime, raceFinishOpens, raceFinishCloses) {
         if (teamFinishTime < raceFinishOpens || teamFinishTime > raceFinishCloses) {
             setTeamFinishTimeIssue(true);
@@ -109,7 +133,7 @@ const TeamScheduleTab = (props) => {
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
             {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
             <div className="start-button"><button type="button" onClick={() => startTeamRace()}>Start Race</button></div>
-            <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} />
+            <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} exchangeRunners={exchangeRunners} />
         </div>
     );
 }

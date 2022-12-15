@@ -26,3 +26,9 @@ def update_exchanged_legs(completed_leg_id, current_leg_id, exchange_datetime):
     current_serializer = RunnerLegSerializer(current_leg, data={'is_in_progress': True}, partial=True)
     if current_serializer.is_valid():
         current_serializer.save()
+
+def finish_last_leg(leg_id, finish_datetime):
+    leg = get_object_or_404(RunnerLeg, id=leg_id)
+    serializer = RunnerLegSerializer(leg, data={'is_completed': True, 'is_in_progress': False, 'runner_leg_end': finish_datetime}, partial=True)
+    if serializer.is_valid():
+        serializer.save()

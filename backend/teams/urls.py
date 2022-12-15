@@ -6,4 +6,6 @@ urlpatterns = [
     path('new/', views.create_team),
     path('<int:team_id>/', views.single_team),
     path('begin/<int:team_id>/', views.begin_race),
+    path('recalculate/<int:team_id>/', views.recalculate_exchanges),
+    path('exchange/<int:team_id>/', views.exchange_runners),
 ]

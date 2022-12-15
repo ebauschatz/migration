@@ -50,9 +50,32 @@ const TeamScheduleTab = (props) => {
         }
     }
 
+    async function recalculateExchanges(start_time, legIds) {
+        let recalculateData = {
+            "first_leg_start": start_time,
+            "legs": legIds
+        }
+        try {
+            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/recalculate/${props.teamId}/`, 
+                recalculateData,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                    },
+            });
+            if (response.status === 200) {
+                getRunnerLegs();
+                getTeam();
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
     async function startTeamRace() {
+        let currentDateTime = new Date().toLocaleString("sv-SE")
         let raceStartData = {
-            "team_start": new Date().toLocaleString("sv-SE"),
+            "team_start": currentDateTime,
             "runner_leg_id": runnerLegs[0].id
         }
         try {
@@ -63,8 +86,8 @@ const TeamScheduleTab = (props) => {
                     },
             });
             if (response.status === 200) {
-                getRunnerLegs();
-                getTeam();
+                let legIds = runnerLegs.map((runnerLeg) => runnerLeg.id);
+                recalculateExchanges(currentDateTime, legIds);
             }
         }
         catch (error) {

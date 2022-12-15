@@ -50,11 +50,11 @@ const TeamScheduleTimes = (props) => {
     return (
         <div className="times-container">
             <div>
-                <b>Team Start Time:</b> <span onClick={() => setShowStartTimeEditModal(true)} className="team-time">{props.team.team_start}</span>
+                <b>Team Start Time:</b> <span onClick={() => setShowStartTimeEditModal(true)} className="team-time">{props.team.team_start ? props.team.team_start.replace("Z","").replace("T"," ") : ""}</span>
                 <TeamScheduleChangeDateTime showTimeEditModal={showStartTimeEditModal} setShowTimeEditModal={setShowStartTimeEditModal} initialValue={props.team.team_start} handleSubmit={updateTeamStartTime} />
             </div>
             <div>
-                <b>Team End Time:</b> <span onClick={() => setShowEndTimeEditModal(true)} className="team-time">{props.team.team_end}</span>
+                <b>Team End Time:</b> <span onClick={() => setShowEndTimeEditModal(true)} className="team-time">{props.team.team_end ? props.team.team_end.replace("Z","").replace("T"," ") : ""}</span>
                 <TeamScheduleChangeDateTime showTimeEditModal={showEndTimeEditModal} setShowTimeEditModal={setShowEndTimeEditModal} initialValue={props.team.team_end} handleSubmit={updateTeamEndTime} />
             </div>
         </div>

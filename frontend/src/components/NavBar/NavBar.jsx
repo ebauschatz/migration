@@ -12,14 +12,14 @@ const Navbar = () => {
       <ul>
         <div className="navSection">
           <li className="brand">
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            {user && <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               <b>Home</b>
-            </Link>
+            </Link>}
           </li>
           <li className="brand">
-            <Link to="/races" style={{ textDecoration: "none", color: "white" }}>
+            {user && <Link to="/races" style={{ textDecoration: "none", color: "white" }}>
               <b>Races</b>
-            </Link>
+            </Link>}
           </li>
         </div>
         <li>

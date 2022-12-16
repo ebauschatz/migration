@@ -64,7 +64,8 @@ const RaceEditModal = (props) => {
                 }
             );
             if (response.status === 200) {
-                handleReset();
+                props.setShowRaceEditModal(false);
+                props.getRaceInfo();
             }
         }
         catch (error) {
@@ -79,7 +80,7 @@ const RaceEditModal = (props) => {
                 <button type="button" onClick={() => props.setShowRaceEditModal(false)}>Cancel</button>
             </Modal.Header>
             <Modal.Body>
-                <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleFormSubmit={handleFormSubmit} handleReset={handleReset} handleValidateAddress={handleValidateAddress} />
+                <CreateRaceLegForm formData={formData} handleInputChange={handleInputChange} handleFormSubmit={handleSubmit} handleReset={handleReset} handleValidateAddress={handleValidateAddress} />
                 {racePlaceId && <RaceLocationMap placeId={racePlaceId} />}
             </Modal.Body>
         </Modal>

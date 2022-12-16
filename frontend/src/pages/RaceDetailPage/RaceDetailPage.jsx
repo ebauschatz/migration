@@ -129,7 +129,7 @@ const RaceDetailPage = (props) => {
 
     return (
         <div className="detail-page-container">
-            <RaceDetail race={race} token={props.token} />
+            <RaceDetail race={race} token={props.token} getRaceInfo={getRaceInfo} />
             <div>
                 <div className="section-header">Legs</div>
                 <RaceLegsList legs={legs} deleteRaceLeg={deleteRaceLeg} handleValidateAddress={handleValidateAddress} token={props.token} getRaceLegs={getRaceLegs} />

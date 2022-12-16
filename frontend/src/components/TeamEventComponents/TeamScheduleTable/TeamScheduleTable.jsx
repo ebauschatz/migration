@@ -74,7 +74,7 @@ const TeamScheduleTable = (props) => {
                         <th className="schedule-element">Runner</th>
                         <th className="schedule-element">Start Time</th>
                         <th className="schedule-element">End Time</th>
-                        <th className="schedule-element"></th>
+                        <th className="schedule-element">Status</th>
                     </tr>
                 </thead>
                 <tbody>

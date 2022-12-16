@@ -13,7 +13,7 @@ const RaceRow = (props) => {
             <td className="data-element">{props.race.race_name}</td>
             <td className="data-element">{props.race.race_start_date}</td>
             <td onClick={handleRaceRowClicked} className="view-edit data-element">View & Edit</td>
-            <td><i className="fa fa-trash-o delete-icon data-element" onClick={() => props.deleteRace(props.race.id)}></i></td>
+            <td data-cy="delete-button"><i className="fa fa-trash-o delete-icon data-element" onClick={() => props.deleteRace(props.race.id)}></i></td>
         </tr>
     );
 }

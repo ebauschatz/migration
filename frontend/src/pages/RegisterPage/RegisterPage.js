@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
+import './RegisterPage.css'
 
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const RegisterPage = () => {
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          Username:{" "}
+          <span className="label-text">Username:</span>{" "}
           <input
             type="text"
             name="username"
@@ -29,7 +30,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          First Name:{" "}
+          <span className="label-text">First Name:</span>{" "}
           <input
             type="text"
             name="firstName"
@@ -38,7 +39,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Last Name:{" "}
+          <span className="label-text">Last Name:</span>{" "}
           <input
             type="text"
             name="lastName"
@@ -47,7 +48,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Email:{" "}
+          <span className="label-text">Email:</span>{" "}
           <input
             type="text"
             name="email"
@@ -56,7 +57,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Password:{" "}
+          <span className="label-text">Password:</span>{" "}
           <input
             type="password"
             name="password"
@@ -64,11 +65,11 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <p style={{ fontSize: "12px" }}>
+        <p className="password-caveat">
           NOTE: Make this an uncommon password with characters, numbers, and
           special characters!
         </p>
-        <button>Register!</button>
+        <button>Register</button>
       </form>
     </div>
   );

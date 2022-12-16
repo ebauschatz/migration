@@ -5,7 +5,7 @@ const CreateRaceLegForm = (props) => {
         <div className="leg-form-container">
             <form className="leg-form">
                 <label>Number: </label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="legNumber"
@@ -13,7 +13,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.legNumber}
                 />
                 <label>Distance: </label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="legDistance"
@@ -21,7 +21,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.legDistance}
                 />
                 <label>End Street Address:</label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="address"
@@ -29,7 +29,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.address}
                 />
                 <label>End City:</label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="city"
@@ -37,7 +37,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.city}
                 />
                 <label>End State:</label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="state"
@@ -45,7 +45,7 @@ const CreateRaceLegForm = (props) => {
                     value={props.formData.state}
                 />
                 <label>End Zip Code:</label>
-                <input
+                <input className="leg-form-input"
                     type="text"
                     required={true}
                     name="zip"

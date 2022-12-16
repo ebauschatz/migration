@@ -13,3 +13,18 @@
 .schedule-time:hover {
     color: yellow;
 }
+
+.completed-leg-check {
+    color: green;
+    font-weight: bolder;
+}
+
+.pending-leg-hourglass {
+    color: orange;
+}
+
+.exchange-button {
+    margin: 0.25rem 0rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}

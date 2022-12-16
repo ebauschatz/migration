@@ -74,11 +74,12 @@ const TeamScheduleTable = (props) => {
                         <th className="schedule-element">Runner</th>
                         <th className="schedule-element">Start Time</th>
                         <th className="schedule-element">End Time</th>
+                        <th className="schedule-element"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.runnerLegs.map((runnerLeg) => {
-                        return <TeamScheduleRow key={runnerLeg.id} runnerLeg={runnerLeg} editStartTime={editStartTime} editEndTime={editEndTime} />
+                        return <TeamScheduleRow key={runnerLeg.id} runnerLeg={runnerLeg} editStartTime={editStartTime} editEndTime={editEndTime} exchangeRunners={props.exchangeRunners} />
                     })}
                 </tbody>
             </table>

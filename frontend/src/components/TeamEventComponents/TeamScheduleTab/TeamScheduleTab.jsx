@@ -9,6 +9,7 @@ const TeamScheduleTab = (props) => {
     const [runnerLegs, setRunnerLegs] = useState([]);
     const [team, setTeam] = useState("");
     const [teamFinshTimeIssue, setTeamFinishTimeIssue] = useState(false);
+    const [raceStarted, setRaceStarted] = useState(false);
 
     useEffect(() => {
         getRunnerLegs();
@@ -43,6 +44,34 @@ const TeamScheduleTab = (props) => {
                 let unsortedLegs = response.data;
                 let sortedLegs = [...unsortedLegs].sort((a, b) => a.race_leg.leg_number - b.race_leg.leg_number)
                 setRunnerLegs(sortedLegs);
+                if (sortedLegs[0].is_completed === true || sortedLegs[0].is_in_progress === true) {
+                    setRaceStarted(true);
+                }
+                else {
+                    setRaceStarted(false)
+                }
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
+    async function recalculateExchanges(start_time, legIds) {
+        let recalculateData = {
+            "first_leg_start": start_time,
+            "legs": legIds
+        }
+        try {
+            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/recalculate/${props.teamId}/`, 
+                recalculateData,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                    },
+            });
+            if (response.status === 200) {
+                getRunnerLegs();
+                getTeam();
             }
         }
         catch (error) {
@@ -51,13 +80,38 @@ const TeamScheduleTab = (props) => {
     }
 
     async function startTeamRace() {
+        let currentDateTime = new Date().toLocaleString("sv-SE")
         let raceStartData = {
-            "team_start": new Date().toLocaleString("sv-SE"),
+            "team_start": currentDateTime,
             "runner_leg_id": runnerLegs[0].id
         }
         try {
             let response = await axios.patch(`http://127.0.0.1:8000/api/teams/begin/${props.teamId}/`, 
                 raceStartData,
+                {headers: {
+                    Authorization: "Bearer " + props.token,
+                    },
+            });
+            if (response.status === 200) {
+                let legIds = runnerLegs.map((runnerLeg) => runnerLeg.id);
+                recalculateExchanges(currentDateTime, legIds);
+            }
+        }
+        catch (error) {
+            console.log(error.response.data);
+        }
+    }
+
+    async function exchangeRunners(exchangeTime) {
+        let legs = runnerLegs.filter((runnerLeg) => runnerLeg.is_completed === false);
+        let legIds = legs.map((runnerLeg) => runnerLeg.id);
+        let exchangeData = {
+            "exchange_time": exchangeTime,
+            "legs": legIds
+        };
+        try {
+            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/exchange/${props.teamId}/`, 
+                exchangeData,
                 {headers: {
                     Authorization: "Bearer " + props.token,
                     },
@@ -85,8 +139,10 @@ const TeamScheduleTab = (props) => {
         <div>
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
             {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
-            <div className="start-button"><button type="button" onClick={() => startTeamRace()}>Start Race</button></div>
-            <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} />
+            <div className="start-button">
+                {!raceStarted && <button type="button" onClick={() => startTeamRace()}>Start Race</button>}
+            </div>
+            <TeamScheduleTable runnerLegs={runnerLegs} getRunnerLegs={getRunnerLegs} token={props.token} exchangeRunners={exchangeRunners} />
         </div>
     );
 }

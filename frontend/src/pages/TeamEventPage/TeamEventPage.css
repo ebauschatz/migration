@@ -1,6 +1,7 @@
 .tabs {
     display: flex;
     justify-content: flex-start;
+    margin-top: 7rem;
 }
 
 .nav.nav-tabs .nav-link {

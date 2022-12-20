@@ -23,7 +23,7 @@ const LoginPage = () => {
       <form className="form" onSubmit={handleSubmit}>
         <label>
         <span className="section-header main-color">Username:</span>{" "}
-          <input className="main-color"
+          <input data-cy="username-input"
             type="text"
             name="username"
             value={formData.username}
@@ -32,7 +32,7 @@ const LoginPage = () => {
         </label>
         <label>
           <span className="section-header main-color">Password:</span>{" "}
-          <input className="main-color"
+          <input data-cy="password-input"
             type="password"
             name="password"
             value={formData.password}
@@ -40,9 +40,9 @@ const LoginPage = () => {
           />
         </label>
         {isServerError ? (
-          <p className="error">Login failed, incorrect credentials!</p>
+          <p className="error">Login failed, incorrect credentials</p>
         ) : null}
-        <button>Login!</button>
+        <button data-cy="login-button">Login</button>
         <Link to="/register">Click here to register!</Link>
       </form>
     </div>

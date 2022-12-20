@@ -11,6 +11,7 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    is_race_admin: false,
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     defaultValues,

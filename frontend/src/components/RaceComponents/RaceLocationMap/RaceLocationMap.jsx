@@ -4,7 +4,7 @@ const RaceLocationMap = (props) => {
     if (props.placeId !== "") {
         let mapSource = `https://www.google.com/maps/embed/v1/place?zoom=17&q=place_id:${props.placeId}&key=AIzaSyDQhT35nj-2_MIGFY05nIXucu4k8VTYuIs`;
         return (
-            <div className="race-map">
+            <div className="race-map" data-cy="race-map">
                 <iframe
                     title={props.placeId}
                     width="500"

@@ -82,7 +82,9 @@ const RacesPage = (props) => {
                 },
             });
             if (response.status === 200) {
-                setRaces(response.data);
+                let unsortedRaces = response.data;
+                let sortedRaces = [...unsortedRaces].sort((a, b) => (a.race_start_date > b.race_start_date) ? 1 : -1)
+                setRaces(sortedRaces);
             }
         }
         catch (error) {

@@ -44,8 +44,10 @@ const TeamScheduleTab = (props) => {
                 let unsortedLegs = response.data;
                 let sortedLegs = [...unsortedLegs].sort((a, b) => a.race_leg.leg_number - b.race_leg.leg_number)
                 setRunnerLegs(sortedLegs);
-                if (sortedLegs[0].is_completed === true || sortedLegs[0].is_in_progress === true) {
-                    setRaceStarted(true);
+                if (sortedLegs.length > 0) {
+                    if (sortedLegs[0].is_completed === true || sortedLegs[0].is_in_progress === true) {
+                        setRaceStarted(true);
+                    }
                 }
                 else {
                     setRaceStarted(false)
@@ -138,7 +140,7 @@ const TeamScheduleTab = (props) => {
     return (
         <div>
             <TeamScheduleTimes team={team} token={props.token} checkTeamFinishTime={checkTeamFinishTime} setTeam={setTeam} />
-            {teamFinshTimeIssue && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
+            {teamFinshTimeIssue && raceStarted && <TeamScheduleFinishProblem teamFinish={team.team_end} raceFinishOpens={team.race.race_finish_opens} raceFinishCloses={team.race.race_finish_closes} />}
             <div className="start-button">
                 {!raceStarted && <button type="button" onClick={() => startTeamRace()}>Start Race</button>}
             </div>

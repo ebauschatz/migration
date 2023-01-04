@@ -1,0 +1,33 @@
+version: "3.1"
+services:
+    migration-database:
+        build: ./database
+        image: ebauschatz/migration-database:1.0
+        ports:
+            - 3306:3306
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+        volumes:
+        - db-data:/var/lib/mysql
+    migration-backend:
+        build: ./backend
+        image: ebauschatz/migration-backend:1.0
+        ports:
+            - 8000:8000
+        depends_on:
+            - "migration-database"
+        restart: always
+        command: >
+            sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    migration-frontend:
+        build: ./frontend
+        image: ebauschatz/migration-frontend:1.0
+        ports:
+            - 3000:3000
+            - 80:80
+            - 443:443
+        depends_on:
+            - "migration-backend"
+volumes:
+  db-data:

@@ -19,7 +19,7 @@ const LoginPage = () => {
   }, [isServerError, reset]);
 
   return (
-    <div className="container">
+    <div className="container login-page">
       <form className="form" onSubmit={handleSubmit}>
         <label>
         <span className="section-header main-color">Username:</span>{" "}

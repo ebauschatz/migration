@@ -28,12 +28,12 @@ const AssignedLegRow = (props) => {
         <tr className="assigned-leg-row">
             <td className="assigned-leg-data-element">{props.runnerLeg.race_leg.leg_number}</td>
             <td className="assigned-leg-data-element">{props.runnerLeg.race_leg.leg_distance}</td>
-            <td className="assigned-leg-data-element">{props.runnerLeg.runner.user.first_name}</td>
+            <td className="assigned-leg-data-element">{props.runnerLeg.runner.user.first_name} {props.runnerLeg.runner.user.last_name}</td>
             <td className="assigned-leg-data-element">{props.runnerLeg.runner.runner_pace}</td>
             <td className="assigned-leg-data-element">
                 <DropdownButton id="runner-dropdown" title={runner.user.first_name} variant="success" size="sm">
                     {props.runners.map((runner) => {
-                        return <Dropdown.Item key={runner.id} onClick={() => setRunner(runner)}>{runner.user.first_name}</Dropdown.Item>
+                        return <Dropdown.Item key={runner.id} onClick={() => setRunner(runner)}>{runner.user.first_name} {runner.user.last_name}</Dropdown.Item>
                     })}
                 </DropdownButton>
             </td>

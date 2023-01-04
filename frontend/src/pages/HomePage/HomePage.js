@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import EventList from "../../components/EventList/EventList";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import './HomePage.css'
 
 const HomePage = (props) => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const HomePage = (props) => {
   }, [props.token, props.user.id]);
 
   return (
-    <div className="container">
+    <div className="container home-page">
       <button onClick={() => navigate("/join")}>Join An Event</button>
       <EventList events={events} />
     </div>

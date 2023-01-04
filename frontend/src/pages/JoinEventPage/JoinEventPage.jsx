@@ -5,6 +5,7 @@ import JoinRacesList from '../../components/JoinEventComponents/JoinRacesList/Jo
 import JoinTeamsList from '../../components/JoinEventComponents/JoinTeamsList/JoinTeamsList';
 import JoinTeamModal from '../../components/JoinEventComponents/JoinTeamModal/JoinTeamModal';
 import CreateTeamModal from '../../components/JoinEventComponents/CreateTeamModal/CreateTeamModal';
+import './JoinEventPage.css'
 
 const JoinEventPage = (props) => {
     const [user, token] = useAuth();
@@ -70,7 +71,7 @@ const JoinEventPage = (props) => {
     }, [raceId, token]);
 
     return (
-        <div>
+        <div className="join-event-page">
             <JoinRacesList races={races} setRaceId={setRaceId} />
             {raceId && <JoinTeamsList token={token} raceId={raceId} teams={teams} setTeams={setTeams} setSelectedTeam={setSelectedTeam} setShowJoinModal={setShowJoinModal} showCreateTeamModal={showCreateTeamModal} setShowCreateTeamModal={setShowCreateTeamModal} />}
             <JoinTeamModal allTeamRoles={allTeamRoles} selectedTeam={selectedTeam} showJoinModal={showJoinModal} setShowJoinModal={setShowJoinModal} userId={user.id} token={token} />

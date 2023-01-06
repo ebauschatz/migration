@@ -56,7 +56,7 @@ const RaceEditModal = (props) => {
             "race_start_zip": formData.zip
         };
         try {
-            let response = await axios.put(`http://127.0.0.1:8000/api/races/${props.race.id}/`,
+            let response = await axios.put(`http://44.210.130.199:8000/api/races/${props.race.id}/`,
                 updatedRace,
                 {headers: {
                     Authorization: "Bearer " + props.token,

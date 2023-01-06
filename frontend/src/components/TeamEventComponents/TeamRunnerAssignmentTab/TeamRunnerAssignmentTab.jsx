@@ -11,7 +11,7 @@ const TeamRunnerAssignmentTab = (props) => {
     useEffect(() => {
         const getRunners = async () => {
             try {
-                let response = await axios.get(`http://127.0.0.1:8000/api/runners/team/${props.teamId}/`,{
+                let response = await axios.get(`http://44.210.130.199:8000/api/runners/team/${props.teamId}/`,{
                     headers: {
                         Authorization: "Bearer " + props.token,
                     },
@@ -29,7 +29,7 @@ const TeamRunnerAssignmentTab = (props) => {
 
     async function getAssignedLegs() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/team/${props.teamId}/`,{
+            let response = await axios.get(`http://44.210.130.199:8000/api/runner_legs/team/${props.teamId}/`,{
                 headers: {
                     Authorization: "Bearer " + props.token,
                 },
@@ -47,7 +47,7 @@ const TeamRunnerAssignmentTab = (props) => {
 
     async function getUnassignedLegs() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/unassigned/${props.teamId}/`,{
+            let response = await axios.get(`http://44.210.130.199:8000/api/runner_legs/unassigned/${props.teamId}/`,{
                 headers: {
                     Authorization: "Bearer " + props.token,
                 },
@@ -65,7 +65,7 @@ const TeamRunnerAssignmentTab = (props) => {
 
     async function assignRunnerLeg(runnerLeg) {
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/runner_legs/new/",
+            let response = await axios.post("http://44.210.130.199:8000/api/runner_legs/new/",
                 runnerLeg,
                 {headers: {
                     Authorization: "Bearer " + props.token,
@@ -83,7 +83,7 @@ const TeamRunnerAssignmentTab = (props) => {
 
     async function reassignRunnerLeg(id, runnerLeg) {
         try {
-            let response = await axios.put(`http://127.0.0.1:8000/api/runner_legs/${id}/`,
+            let response = await axios.put(`http://44.210.130.199:8000/api/runner_legs/${id}/`,
                 runnerLeg,
                 {headers: {
                     Authorization: "Bearer " + props.token,

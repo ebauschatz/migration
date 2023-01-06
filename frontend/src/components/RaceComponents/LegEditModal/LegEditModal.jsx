@@ -38,7 +38,7 @@ const LegEditModal = (props) => {
             "race_id": props.modalLeg.race.id
         }
         try {
-            let response = await axios.put(`http://127.0.0.1:8000/api/race_legs/${props.modalLeg.id}/`,
+            let response = await axios.put(`http://44.210.130.199:8000/api/race_legs/${props.modalLeg.id}/`,
                 updatedLeg,
                 {headers: {
                     Authorization: "Bearer " + props.token,

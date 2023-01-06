@@ -31,7 +31,7 @@ const TeamScheduleTimes = (props) => {
 
     async function updateTeam(team) {
         try {
-            let response = await axios.put(`http://127.0.0.1:8000/api/teams/${props.team.id}/`,
+            let response = await axios.put(`http://44.210.130.199:8000/api/teams/${props.team.id}/`,
                 team,
                 {headers: {
                 Authorization: "Bearer " + props.token,

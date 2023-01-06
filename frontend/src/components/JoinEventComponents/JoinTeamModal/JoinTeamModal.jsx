@@ -24,7 +24,7 @@ const JoinTeamModal = (props) => {
             "team_role_id": teamRole.id
         }
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/runners/new/",
+            let response = await axios.post("http://44.210.130.199:8000/api/runners/new/",
                 newRunner,
                 {headers: {
                       Authorization: "Bearer " + props.token,

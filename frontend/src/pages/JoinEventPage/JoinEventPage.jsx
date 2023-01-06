@@ -20,7 +20,7 @@ const JoinEventPage = (props) => {
     useEffect(() => {
         const getAllRaces = async () => {
             try {
-                let response = await axios.get("http://127.0.0.1:8000/api/races/all/", {
+                let response = await axios.get("http://44.210.130.199:8000/api/races/all/", {
                   headers: {
                     Authorization: "Bearer " + token,
                   },
@@ -37,7 +37,7 @@ const JoinEventPage = (props) => {
     useEffect(() => {
         const fetchRunnerRoles = async () => {
             try {
-                let response = await axios.get("http://127.0.0.1:8000/api/team_roles/all/", {
+                let response = await axios.get("http://44.210.130.199:8000/api/team_roles/all/", {
                     headers: {
                     Authorization: "Bearer " + token,
                     },
@@ -55,7 +55,7 @@ const JoinEventPage = (props) => {
         const getRaceTeams = async () => {
             if (raceId > 0) {
                 try {
-                    let response = await axios.get(`http://127.0.0.1:8000/api/teams/race/${raceId}/`, {
+                    let response = await axios.get(`http://44.210.130.199:8000/api/teams/race/${raceId}/`, {
                         headers: {
                             Authorization: "Bearer " + token,
                           },

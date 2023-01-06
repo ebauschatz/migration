@@ -12,7 +12,7 @@ const HomePage = (props) => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        let response = await axios.get(`http://127.0.0.1:8000/api/runners/user/${props.user.id}/`, {
+        let response = await axios.get(`http://44.210.130.199:8000/api/runners/user/${props.user.id}/`, {
           headers: {
             Authorization: "Bearer " + props.token,
           },

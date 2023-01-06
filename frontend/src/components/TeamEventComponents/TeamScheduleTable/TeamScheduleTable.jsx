@@ -49,7 +49,7 @@ const TeamScheduleTable = (props) => {
 
     async function updateRunnerLeg(runnerLegId, runnerLeg) {
         try {
-            let response = await axios.put(`http://127.0.0.1:8000/api/runner_legs/${runnerLegId}/`,
+            let response = await axios.put(`http://44.210.130.199:8000/api/runner_legs/${runnerLegId}/`,
                 runnerLeg,
                 {headers: {
                 Authorization: "Bearer " + props.token,

@@ -18,7 +18,7 @@ const TeamScheduleTab = (props) => {
 
     async function getTeam() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/teams/${props.teamId}/`, {
+            let response = await axios.get(`http://44.210.130.199:8000/api/teams/${props.teamId}/`, {
                 headers: {
                 Authorization: "Bearer " + props.token,
                 },
@@ -35,7 +35,7 @@ const TeamScheduleTab = (props) => {
 
     async function getRunnerLegs() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/runner_legs/team/${props.teamId}/`, {
+            let response = await axios.get(`http://44.210.130.199:8000/api/runner_legs/team/${props.teamId}/`, {
                 headers: {
                 Authorization: "Bearer " + props.token,
                 },
@@ -65,7 +65,7 @@ const TeamScheduleTab = (props) => {
             "legs": legIds
         }
         try {
-            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/recalculate/${props.teamId}/`, 
+            let response = await axios.patch(`http://44.210.130.199:8000/api/teams/recalculate/${props.teamId}/`, 
                 recalculateData,
                 {headers: {
                     Authorization: "Bearer " + props.token,
@@ -88,7 +88,7 @@ const TeamScheduleTab = (props) => {
             "runner_leg_id": runnerLegs[0].id
         }
         try {
-            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/begin/${props.teamId}/`, 
+            let response = await axios.patch(`http://44.210.130.199:8000/api/teams/begin/${props.teamId}/`, 
                 raceStartData,
                 {headers: {
                     Authorization: "Bearer " + props.token,
@@ -112,7 +112,7 @@ const TeamScheduleTab = (props) => {
             "legs": legIds
         };
         try {
-            let response = await axios.patch(`http://127.0.0.1:8000/api/teams/exchange/${props.teamId}/`, 
+            let response = await axios.patch(`http://44.210.130.199:8000/api/teams/exchange/${props.teamId}/`, 
                 exchangeData,
                 {headers: {
                     Authorization: "Bearer " + props.token,

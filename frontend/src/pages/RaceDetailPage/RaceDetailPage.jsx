@@ -31,7 +31,7 @@ const RaceDetailPage = (props) => {
 
     async function getRaceInfo() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/races/${raceId}/`, {
+            let response = await axios.get(`http://44.210.130.199:8000/api/races/${raceId}/`, {
                 headers: {
                     Authorization: "Bearer " + props.token,
                 }
@@ -47,7 +47,7 @@ const RaceDetailPage = (props) => {
 
     async function getRaceLegs() {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/api/race_legs/race/${raceId}/`, {
+            let response = await axios.get(`http://44.210.130.199:8000/api/race_legs/race/${raceId}/`, {
                 headers: {
                     Authorization: "Bearer " + props.token,
                 }
@@ -65,7 +65,7 @@ const RaceDetailPage = (props) => {
 
     async function deleteRaceLeg(legId) {
         try {
-            let response = await axios.delete(`http://127.0.0.1:8000/api/race_legs/${legId}/`, {
+            let response = await axios.delete(`http://44.210.130.199:8000/api/race_legs/${legId}/`, {
                 headers: {
                     Authorization: "Bearer " + props.token,
                 }
@@ -91,7 +91,7 @@ const RaceDetailPage = (props) => {
             "leg_end_zip": formData.zip
         }
         try {
-            let response = await axios.post("http://127.0.0.1:8000/api/race_legs/new/",
+            let response = await axios.post("http://44.210.130.199:8000/api/race_legs/new/",
                 newLeg,
                 {headers: {
                     Authorization: "Bearer " + props.token,

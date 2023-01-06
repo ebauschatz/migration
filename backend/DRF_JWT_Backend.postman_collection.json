@@ -23,7 +23,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/auth/register/",
+							"raw": "http://44.210.130.199:8000/api/auth/register/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -57,7 +57,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/auth/login/",
+							"raw": "http://44.210.130.199:8000/api/auth/login/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -91,7 +91,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/auth/login/refresh/",
+							"raw": "http://44.210.130.199:8000/api/auth/login/refresh/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -122,7 +122,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/cars/all/",
+							"raw": "http://44.210.130.199:8000/api/cars/all/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -165,7 +165,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/cars/",
+							"raw": "http://44.210.130.199:8000/api/cars/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -204,7 +204,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/cars/",
+							"raw": "http://44.210.130.199:8000/api/cars/",
 							"protocol": "http",
 							"host": [
 								"127",
